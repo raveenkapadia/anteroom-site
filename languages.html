@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ANTEROOM — Eleven languages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Arabic:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+<script src="/image-slot.js"></script>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#FFFFFF;-webkit-font-smoothing:antialiased}
+a{color:#141414;text-decoration:none;border-bottom:1px solid rgba(20,20,20,.28)}
+a:hover{border-bottom-color:#141414}
+button{font-family:inherit;color:inherit}
+image-slot{display:block}
+::selection{background:#141414;color:#FFFFFF}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</helmet>
+
+<div style="background:#FFFFFF;color:#141414;font-family:'Plus Jakarta Sans',Helvetica,sans-serif;min-height:100vh;overflow-x:clip">
+
+<div style="position:sticky;top:0;z-index:60;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(20,20,20,.08)">
+  <div style="max-width:1560px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 clamp(16px,3vw,40px);height:62px">
+    <div style="display:flex;align-items:baseline;gap:14px;flex:0 0 auto">
+      <a href="/" style="font:600 13px/1 'IBM Plex Mono',monospace;letter-spacing:0.22em;border:0">ANTEROOM</a>
+      <span style="display:{{ navDisplay }};font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Languages</span>
+    </div>
+    <nav style="display:{{ navDisplay }};align-items:center;gap:4px">
+      <a href="/" style="border:0;border-radius:999px;padding:9px 15px;font:500 12px/1 'Plus Jakarta Sans',sans-serif;color:#5E5E58">Meetings &amp; Events</a>
+      <a href="/audiences" style="border:0;border-radius:999px;padding:9px 15px;font:500 12px/1 'Plus Jakarta Sans',sans-serif;color:#5E5E58">Audiences</a>
+      <a href="/process" style="border:0;border-radius:999px;padding:9px 15px;font:500 12px/1 'Plus Jakarta Sans',sans-serif;color:#5E5E58">Process</a>
+      <span style="border-radius:999px;padding:9px 15px;font:500 12px/1 'Plus Jakarta Sans',sans-serif;background:#F2F1ED;color:#141414">Languages</span>
+      <a href="/pricing" style="border:0;border-radius:999px;padding:9px 15px;font:500 12px/1 'Plus Jakarta Sans',sans-serif;color:#5E5E58">Pricing</a>
+      <a href="/studio" style="border:0;border-radius:999px;padding:9px 15px;font:500 12px/1 'Plus Jakarta Sans',sans-serif;color:#5E5E58">Studio</a>
+    </nav>
+    <a href="/start-a-brief" style="flex:0 0 auto;border:0;background:{{ goldBg }};color:#191306;text-shadow:0 1px 0 rgba(255,248,214,.55);box-shadow:{{ goldShadow }};border-radius:7px;padding:11px 20px;font:600 12px/1 'Plus Jakarta Sans',sans-serif;white-space:nowrap">Start a brief</a>
+  </div>
+</div>
+
+<!-- OPENING -->
+<section style="padding:clamp(44px,6vw,104px) clamp(16px,3vw,40px) clamp(28px,3.6vw,56px)">
+  <div style="max-width:1560px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="display:flex;align-items:center;gap:12px;font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.2em;text-transform:uppercase;color:#5E5E58">
+      <span style="width:22px;height:3px;border-radius:2px;background:{{ ruleBg }};box-shadow:{{ ruleShadow }};display:block"></span>Eleven languages
+    </div>
+    <h1 style="margin:18px 0 0;white-space:nowrap;font-weight:500;font-size:clamp(21px,4vw,58px);line-height:1.04;letter-spacing:-0.034em;animation:rise 800ms cubic-bezier(.2,.9,.2,1) both">Not eleven subtitle files.</h1>
+    <p style="margin:clamp(13px,1.6vw,20px) 0 0;white-space:nowrap;font:400 clamp(13px,1.6vw,19px)/1.5 'Plus Jakarta Sans',sans-serif;color:#4A4A44;animation:rise 800ms cubic-bezier(.2,.9,.2,1) 140ms both">A subtitled film is made for someone else.</p>
+  </div>
+</section>
+
+<!-- THE FRAME, CYCLING -->
+<section style="padding:0 clamp(16px,3vw,40px) clamp(44px,6vw,100px)">
+  <div style="max-width:1560px;margin:0 auto;position:relative;aspect-ratio:21/9;background:#0C1420;overflow:hidden">
+    <image-slot id="lg-frame" shape="rect" fit="cover" src="/img/scene-3.png" placeholder="One film, eleven editions — the same frame, a different lower third" style="width:100%;height:100%"></image-slot>
+    <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(9,16,28,.4) 0%,rgba(9,16,28,.1) 34%,rgba(9,16,28,.72) 100%)"></div>
+    <div style="position:absolute;top:clamp(14px,1.8vw,24px);left:clamp(16px,2vw,30px);right:clamp(16px,2vw,30px);display:flex;justify-content:space-between;gap:14px;pointer-events:none;font:400 10px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,.8)">
+      <span>Edition — {{ live.code }}</span>
+      <span>Same cut · re-voiced · re-typeset</span>
+    </div>
+    <div style="position:absolute;left:clamp(18px,2.4vw,40px);right:clamp(18px,2.4vw,40px);bottom:clamp(18px,2.4vw,36px);pointer-events:none">
+      <div style="height:3px;border-radius:2px;background:{{ ruleBg }};box-shadow:{{ ruleShadow }};width:44px"></div>
+      <div style="margin-top:12px;font-family:{{ live.font }};font-weight:500;font-size:clamp(26px,4vw,58px);line-height:1.1;letter-spacing:-0.02em;color:#FFFFFF;direction:{{ live.dir }};animation:fade 700ms ease both">{{ live.line }}</div>
+      <div style="margin-top:9px;font:400 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,.72)">{{ live.name }} · {{ live.note }}</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT CHANGES -->
+<section style="background:#101B2B;color:#F1F3F7;padding:clamp(44px,6vw,100px) clamp(16px,3vw,40px)">
+  <div style="max-width:1560px;margin:0 auto">
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center">
+      <h2 style="margin:0;white-space:nowrap;font-weight:500;font-size:clamp(20px,3.2vw,42px);line-height:1.06;letter-spacing:-0.03em;color:#FFFFFF">Six things we rebuild.</h2>
+      <p style="margin:clamp(13px,1.6vw,18px) 0 0;white-space:nowrap;font:400 clamp(13px,1.5vw,17px)/1.5 'Plus Jakarta Sans',sans-serif;color:#C8CEDA">Not one of them is a subtitle track.</p>
+    </div>
+    <div style="margin-top:clamp(26px,3.6vw,52px);display:grid;grid-template-columns:{{ sixCols }};gap:clamp(18px,2.6vw,40px)">
+      <sc-for list="{{ six }}" as="x" hint-placeholder-count="6">
+        <div style="min-width:0">
+          <div style="height:3px;border-radius:2px;background:{{ ruleBg }};box-shadow:{{ ruleShadow }};width:34px"></div>
+          <div style="margin-top:14px;font-weight:600;font-size:17px;line-height:1.25;letter-spacing:-0.016em;color:#FFFFFF">{{ x.t }}</div>
+          <p style="margin:8px 0 0;font:400 15px/1.55 'Plus Jakarta Sans',sans-serif;color:#C8CEDA;text-wrap:pretty">{{ x.d }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- THE ELEVEN -->
+<section style="padding:clamp(44px,6vw,100px) clamp(16px,3vw,40px) clamp(30px,4vw,60px)">
+  <div style="max-width:1560px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="display:flex;align-items:center;gap:12px;font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.2em;text-transform:uppercase;color:#5E5E58">
+      <span style="width:22px;height:3px;border-radius:2px;background:{{ ruleBg }};box-shadow:{{ ruleShadow }};display:block"></span>The eleven
+    </div>
+    <h2 style="margin:18px 0 0;white-space:nowrap;font-weight:500;font-size:clamp(20px,3.2vw,42px);line-height:1.06;letter-spacing:-0.03em">Each one set in its own script.</h2>
+  </div>
+</section>
+
+<section style="padding:0 clamp(16px,3vw,40px) clamp(44px,6vw,100px)">
+  <div style="max-width:1360px;margin:0 auto;border-top:1px solid rgba(20,20,20,.14)">
+    <sc-for list="{{ list }}" as="l" hint-placeholder-count="11">
+      <button onClick="{{ l.pick }}" style="width:100%;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 24px;background:{{ l.bg }};border:0;border-bottom:1px solid rgba(20,20,20,.1);padding:clamp(13px,1.6vw,20px) clamp(10px,1.4vw,18px);cursor:pointer;text-align:left;transition:background 400ms cubic-bezier(.22,1,.36,1)">
+        <span style="flex:0 0 auto;font:400 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:{{ l.meta }}">{{ l.code }}</span>
+        <span style="flex:1 1 auto;min-width:0;font-family:{{ l.font }};font-weight:500;font-size:clamp(24px,3.4vw,50px);line-height:1.12;letter-spacing:-0.026em;color:{{ l.fg }};direction:{{ l.dir }};text-align:{{ l.align }}">{{ l.native }}</span>
+        <span style="flex:0 0 auto;font:400 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:{{ l.meta }}">{{ l.name }}</span>
+      </button>
+    </sc-for>
+  </div>
+</section>
+
+<!-- EVIDENCE -->
+<section style="padding:0 clamp(16px,3vw,40px) clamp(44px,6vw,100px)">
+  <div style="max-width:1100px;margin:0 auto;border:1px solid rgba(20,20,20,.14);padding:clamp(22px,3vw,44px)">
+    <div style="font:400 9px/1.8 'IBM Plex Mono',monospace;letter-spacing:0.16em;text-transform:uppercase;color:#5E5E58">Why it matters</div>
+    <p style="margin:14px 0 0;max-width:60ch;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(19px,2.1vw,30px);line-height:1.3;letter-spacing:-0.012em;color:#141414;text-wrap:pretty">Dubai’s four largest source markets in 2025 were India, Saudi Arabia, the United Kingdom and Russia. Three of the four are not English-first markets.</p>
+    <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:10px 26px">
+      <sc-for list="{{ markets }}" as="m" hint-placeholder-count="4">
+        <span style="font:400 13px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.04em;color:#4A4A44">{{ m }}</span>
+      </sc-for>
+    </div>
+    <p style="margin:16px 0 0;font:400 11px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.06em;color:#5E5E58">Source — <a href="https://www.visitdubai.com/en/department-of-economy-and-tourism/media-centre" target="_blank" rel="noopener">Dubai Department of Economy and Tourism, 2025 visitor figures</a></p>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section style="padding:0 clamp(16px,3vw,40px) clamp(44px,6vw,100px)">
+  <div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:14px 30px;border-top:1px solid rgba(20,20,20,.16);border-bottom:1px solid rgba(20,20,20,.16);padding:clamp(16px,2.2vw,26px) 0">
+    <span style="font-weight:500;font-size:clamp(17px,1.8vw,23px);line-height:1.3;letter-spacing:-0.022em">Each extra language edition</span>
+    <span style="font:400 14px/1.5 'Plus Jakarta Sans',sans-serif;color:#4A4A44">Adds three working days</span>
+    <span style="font-weight:500;font-size:clamp(20px,2.2vw,30px);line-height:1;letter-spacing:-0.03em">$150</span>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section style="padding:clamp(20px,3vw,44px) clamp(16px,3vw,40px) clamp(46px,7vw,110px)">
+  <div style="max-width:1560px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <h2 style="margin:0;white-space:nowrap;font-weight:500;font-size:clamp(22px,3.6vw,48px);line-height:1.06;letter-spacing:-0.032em">Which language do your guests book in?</h2>
+    <div style="margin-top:clamp(22px,3vw,34px);display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+      <a href="/start-a-brief" style="border:0;background:{{ goldBg }};color:#191306;text-shadow:0 1px 0 rgba(255,248,214,.55);box-shadow:{{ goldShadow }};border-radius:7px;padding:16px 28px;font:600 14px/1 'Plus Jakarta Sans',sans-serif">Start a brief</a>
+      <a href="/send-one-photograph" style="border:0;border-bottom:1px solid #141414;padding:0 0 5px;align-self:center;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase">Send one photograph</a>
+    </div>
+  </div>
+</section>
+
+<footer style="background:#101B2B;padding:clamp(26px,3.4vw,44px) clamp(16px,3vw,40px) clamp(28px,3.6vw,48px)">
+  <div style="max-width:1560px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-between;font:400 10px/1.9 'IBM Plex Mono',monospace;letter-spacing:0.12em;text-transform:uppercase;color:#96A0B4">
+    <span>ANTEROOM — advertising films for hotels</span>
+    <span>Editions, not subtitles</span>
+    <span>Registered in the UAE · eleven languages</span>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#8C6B3A&quot;,&quot;options&quot;:[&quot;#8C6B3A&quot;,&quot;#3F5C4A&quot;,&quot;#141414&quot;,&quot;#C2542A&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Palette&quot;}}">
+class Component extends DCLogic {
+  state = { wide: true, cur: 0 };
+
+  JAK = "'Plus Jakarta Sans',Helvetica,sans-serif";
+  AR = "'Noto Sans Arabic','Plus Jakarta Sans',sans-serif";
+  DEV = "'Noto Sans Devanagari','Plus Jakarta Sans',sans-serif";
+  SC = "'Noto Sans SC','Plus Jakarta Sans',sans-serif";
+
+  // native name, English name, code, lower-third line, note, script, direction
+  langData = [
+    ['English', 'English', 'EN', 'A room that holds four hundred.', 'Read for a British and Gulf ear', 'JAK', 'ltr'],
+    ['العربية', 'Arabic', 'AR', 'قاعة تتسع لأربعمئة ضيف.', 'Right-to-left, set properly', 'AR', 'rtl'],
+    ['हिन्दी', 'Hindi', 'HI', 'चार सौ मेहमानों का हॉल।', 'Devanagari, correctly composed', 'DEV', 'ltr'],
+    ['Русский', 'Russian', 'RU', 'Зал на четыреста гостей.', 'Cyrillic, and a slower read', 'JAK', 'ltr'],
+    ['Deutsch', 'German', 'DE', 'Ein Saal für vierhundert Gäste.', 'Longer words, re-paced', 'JAK', 'ltr'],
+    ['Français', 'French', 'FR', 'Une salle pour quatre cents.', 'Re-voiced, not dubbed', 'JAK', 'ltr'],
+    ['中文', 'Chinese', 'ZH', '可容纳四百人的宴会厅。', 'Simplified, and typeset for it', 'SC', 'ltr'],
+    ['Español', 'Spanish', 'ES', 'Un salón para cuatrocientos.', 'Neutral Latin American read', 'JAK', 'ltr'],
+    ['Italiano', 'Italian', 'IT', 'Una sala da quattrocento.', 'Warmer pacing, same cut', 'JAK', 'ltr'],
+    ['اردو', 'Urdu', 'UR', 'چار سو مہمانوں کا ہال۔', 'Right-to-left, Nastaliq where set', 'AR', 'rtl'],
+    ['Português', 'Portuguese', 'PT', 'Um salão para quatrocentos.', 'Brazilian or European', 'JAK', 'ltr']
+  ];
+
+  sixData = [
+    ['Voice', 'A native speaker reads it, chosen for the market. Not a synthesised accent laid over an English cut.'],
+    ['Pace', 'Some languages need more time to say the same thing. The edit is re-timed so nothing is rushed.'],
+    ['Typography', 'Proper right-to-left setting for Arabic, correct Devanagari and Cyrillic, and type that belongs to the language rather than surviving it.'],
+    ['Cultural read', 'A native reader watches the whole film before delivery and flags anything that lands wrong.'],
+    ['On-screen text', 'Every title, price and place name is rebuilt in the language — not overlaid on top of the English.'],
+    ['Sound', 'Music and mix are rebalanced around the new voice, so the read sits in the track rather than on it.']
+  ];
+
+  marketData = ['India — 2.8m', 'Saudi Arabia — 2.1m', 'United Kingdom — 1.8m', 'Russia — 1.5m'];
+
+  gold = 'linear-gradient(180deg,#FFFAE6 2%,#F6E4AE 14%,#F1DA9A 30%,#EED18A 45%,#E4C478 56%,#D9B461 70%,#E0BD69 80%,#E3C070 88%,#DFC070 97%)';
+  goldShadow = 'inset 0 0 0 1px rgba(255,255,255,.5),inset 0 1px 0 rgba(255,255,255,.95),inset 0 7px 12px -7px rgba(255,255,255,.8),inset 0 -1px 0 rgba(255,252,242,.6),0 1px 2px rgba(30,22,6,.22),0 5px 12px -6px rgba(30,22,6,.34)';
+
+  componentDidMount() {
+    this.reduced = !!this.props.forceReducedMotion || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    this.onResize = () => this.setState(s => {
+      const w = window.innerWidth > 900;
+      return w === s.wide ? null : { wide: w };
+    });
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+    if (!this.reduced) {
+      this.timer = setInterval(() => this.setState(s => ({ cur: (s.cur + 1) % this.langData.length })), 3400);
+    }
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    clearInterval(this.timer);
+  }
+
+  mixHex(hex, target, amt) {
+    const n = parseInt(String(hex).slice(1), 16);
+    if (isNaN(n)) return hex;
+    const t = parseInt(String(target).slice(1), 16);
+    const c = (sh) => { const a = (n >> sh) & 255, b = (t >> sh) & 255; return Math.round(a + (b - a) * amt); };
+    return 'rgb(' + c(16) + ',' + c(8) + ',' + c(0) + ')';
+  }
+  metalRule(a) {
+    return 'linear-gradient(180deg,' + this.mixHex(a, '#FFFFFF', 0.42) + ' 0%,' + this.mixHex(a, '#FFFFFF', 0.08) + ' 36%,' + a + ' 60%,' + this.mixHex(a, '#000000', 0.34) + ' 100%)';
+  }
+
+  renderVals() {
+    const s = this.state, accent = this.props.accent || '#8C6B3A';
+    const d = this.langData[s.cur];
+    const fontFor = (k) => this[k];
+    return {
+      accent,
+      ruleBg: this.metalRule(accent),
+      ruleShadow: 'inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(46,32,10,.4),0 1px 2px rgba(46,32,10,.3)',
+      goldBg: this.gold, goldShadow: this.goldShadow,
+      navDisplay: s.wide ? 'flex' : 'none',
+      sixCols: s.wide ? 'repeat(3,minmax(0,1fr))' : 'minmax(0,1fr)',
+
+      live: { code: d[2], line: d[3], name: d[1], note: d[4], font: fontFor(d[5]), dir: d[6] },
+
+      list: this.langData.map((l, i) => {
+        const on = s.cur === i;
+        return {
+          native: l[0], name: l[1], code: l[2],
+          font: fontFor(l[5]), dir: l[6],
+          align: l[6] === 'rtl' ? 'right' : 'left',
+          bg: on ? '#F7F6F3' : '#FFFFFF',
+          fg: on ? '#141414' : '#4A4A44',
+          meta: on ? '#141414' : '#5E5E58',
+          pick: () => { clearInterval(this.timer); this.setState(() => ({ cur: i })); }
+        };
+      }),
+
+      six: this.sixData.map(x => ({ t: x[0], d: x[1] })),
+      markets: this.marketData
+    };
+  }
+}
+</script>
+</body>
+</html>

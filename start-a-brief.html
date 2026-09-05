@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ANTEROOM — Start a brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="/image-slot.js"></script>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#FFFFFF;-webkit-font-smoothing:antialiased}
+a{color:#141414;text-decoration:none;border-bottom:1px solid rgba(20,20,20,.28)}
+a:hover{border-bottom-color:#141414}
+button{font-family:inherit;color:inherit}
+input,textarea,select{font-family:inherit;color:#141414}
+image-slot{display:block}
+::selection{background:#141414;color:#FFFFFF}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid #8C6B3A;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</helmet>
+
+<div style="background:#FFFFFF;color:#141414;font-family:'Plus Jakarta Sans',Helvetica,sans-serif;min-height:100vh;display:flex;flex-direction:column;overflow-x:clip">
+
+<!-- MASTHEAD -->
+<div style="position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(20,20,20,.08)">
+  <div style="max-width:1560px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 clamp(16px,3vw,40px);height:62px">
+    <div style="display:flex;align-items:baseline;gap:14px;flex:0 0 auto">
+      <a href="/" style="font:600 13px/1 'IBM Plex Mono',monospace;letter-spacing:0.22em;border:0">ANTEROOM</a>
+      <span style="display:{{ navDisplay }};font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Start a brief</span>
+    </div>
+    <span style="font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">{{ stepLabel }}</span>
+    <div style="display:flex;align-items:center;gap:12px;flex:0 0 auto">
+      <span style="display:{{ navDisplay }};font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">No account needed</span>
+      <a href="/send-one-photograph" style="border:0;border-bottom:1px solid #141414;padding:0 0 4px;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.13em;text-transform:uppercase;white-space:nowrap">Just send a photo</a>
+    </div>
+  </div>
+  <div style="height:3px;background:rgba(20,20,20,.08)">
+    <div style="height:3px;background:{{ ruleBg }};box-shadow:{{ ruleShadow }};width:{{ progress }};transition:width 600ms cubic-bezier(.22,1,.36,1)"></div>
+  </div>
+</div>
+
+<main style="flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;padding:clamp(34px,5vw,80px) clamp(16px,3vw,40px) clamp(40px,6vw,96px)">
+  <div style="max-width:1100px;margin:0 auto;width:100%">
+
+    <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+      <div style="animation:fade 400ms ease both">
+        <div style="display:flex;align-items:center;gap:12px;font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.2em;text-transform:uppercase;color:#5E5E58">
+          <span style="width:22px;height:3px;border-radius:2px;background:{{ ruleBg }};box-shadow:{{ ruleShadow }};display:block"></span>{{ q.eyebrow }}
+        </div>
+        <sc-if value="{{ hasTier }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:14px;display:inline-flex;align-items:center;gap:12px;border:1px solid rgba(20,20,20,.16);border-radius:2px;padding:9px 14px">
+            <span style="font:400 9px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:#5E5E58">Plan</span>
+            <span style="font-weight:500;font-size:14px;line-height:1.3;letter-spacing:-0.016em;color:#141414">{{ tierName }}</span>
+            <button onClick="{{ clearTier }}" style="background:none;border:0;padding:0;cursor:pointer;font:400 9px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58;border-bottom:1px solid rgba(20,20,20,.28)">Change</button>
+          </div>
+        </sc-if>
+        <h1 style="margin:16px 0 0;font-weight:500;font-size:clamp(28px,4vw,54px);line-height:1.05;letter-spacing:-0.034em;text-wrap:pretty">{{ q.title }}</h1>
+        <p style="margin:12px 0 0;max-width:56ch;font:400 clamp(14px,1.5vw,18px)/1.55 'Plus Jakarta Sans',sans-serif;color:#4A4A44;text-wrap:pretty">{{ q.hint }}</p>
+
+        <!-- 1 · AUDIENCE -->
+        <sc-if value="{{ isAudience }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:clamp(22px,3vw,38px);display:grid;grid-template-columns:{{ audCols }};gap:1px;background:rgba(20,20,20,.12);border:1px solid rgba(20,20,20,.12)">
+            <sc-for list="{{ audiences }}" as="a" hint-placeholder-count="12">
+              <button onClick="{{ a.pick }}" style="min-width:0;text-align:left;background:{{ a.bg }};border:0;padding:14px 16px;cursor:pointer;transition:background 300ms">
+                <span style="display:block;font:400 9px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:{{ a.n }}">{{ a.num }}</span>
+                <span style="display:block;margin-top:5px;font-weight:500;font-size:15px;line-height:1.25;letter-spacing:-0.018em;color:{{ a.fg }}">{{ a.name }}</span>
+                <span style="display:block;margin-top:4px;font:400 12.5px/1.4 'Plus Jakarta Sans',sans-serif;color:{{ a.sub }}">{{ a.goal }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <!-- 2 · PROPERTY  3 · PHOTOGRAPHY  4 · YOU -->
+        <sc-if value="{{ isFields }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:clamp(22px,3vw,38px);display:grid;grid-template-columns:{{ fieldCols }};gap:14px">
+            <sc-for list="{{ fields }}" as="f" hint-placeholder-count="3">
+              <label style="min-width:0;display:flex;flex-direction:column;gap:7px;grid-column:{{ f.span }}">
+                <span style="font:400 9px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:#5E5E58">{{ f.label }}</span>
+                <input value="{{ f.value }}" onInput="{{ f.set }}" placeholder="{{ f.ph }}" style="width:100%;background:#FFFFFF;border:1px solid rgba(20,20,20,.2);border-radius:4px;padding:14px 16px;font:400 15px/1.4 'Plus Jakarta Sans',sans-serif">
+              </label>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <!-- LANGUAGES, inside step three -->
+        <sc-if value="{{ isLang }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:clamp(20px,2.6vw,32px);padding-top:16px;border-top:1px solid rgba(20,20,20,.12);font:400 9px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:#5E5E58">{{ langHeading }}</div>
+          <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:9px">
+            <sc-for list="{{ langs }}" as="l" hint-placeholder-count="11">
+              <button onClick="{{ l.pick }}" style="background:{{ l.bg }};border:1px solid {{ l.border }};border-radius:999px;padding:11px 18px;cursor:pointer;font:500 14px/1 'Plus Jakarta Sans',sans-serif;color:{{ l.fg }};transition:background 300ms,border-color 300ms">{{ l.name }}</button>
+            </sc-for>
+          </div>
+          <p style="margin:14px 0 0;font:400 12px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.06em;color:#5E5E58">English is included. Each extra language is {{ langPrice }}.</p>
+        </sc-if>
+
+        <!-- FOOT -->
+        <div style="margin-top:clamp(26px,3.4vw,44px);padding-top:18px;border-top:1px solid rgba(20,20,20,.12);display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:space-between">
+          <button onClick="{{ back }}" style="display:{{ backShow }};background:none;border:0;border-bottom:1px solid #141414;padding:0 0 4px;cursor:pointer;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.13em;text-transform:uppercase">Back</button>
+          <div style="display:flex;align-items:center;gap:18px;margin-left:auto">
+            <span style="font:400 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">{{ q.foot }}</span>
+            <button onClick="{{ next }}" disabled="{{ nextDisabled }}" style="background:{{ nextBg }};color:{{ nextFg }};text-shadow:{{ nextTextShadow }};box-shadow:{{ nextShadow }};border:0;border-radius:7px;padding:15px 28px;cursor:{{ nextCursor }};font:600 14px/1 'Plus Jakarta Sans',sans-serif;opacity:{{ nextOpacity }};transition:opacity 350ms">{{ nextLabel }}</button>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- CONFIRMATION -->
+    <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+      <div style="animation:fade 500ms ease both;text-align:center">
+        <div style="position:relative;width:100%;aspect-ratio:21/9;background:#0C1420;overflow:hidden">
+          <image-slot id="sb-done" shape="rect" fit="cover" src="/img/scene-1.png" placeholder="A producer reading a brief" style="width:100%;height:100%"></image-slot>
+          <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(9,16,28,.5) 0%,rgba(9,16,28,.6) 50%,rgba(9,16,28,.8) 100%)"></div>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(20px,4vw,48px);pointer-events:none">
+            <h1 style="margin:0;font-weight:500;font-size:clamp(26px,3.6vw,50px);line-height:1.05;letter-spacing:-0.034em;color:#FFFFFF">Brief received.</h1>
+            <p style="margin:14px auto 0;max-width:52ch;font:400 clamp(14px,1.5vw,17px)/1.6 'Plus Jakarta Sans',sans-serif;color:rgba(244,243,239,.92);text-wrap:pretty">A producer will read it and come back within one working day, with either a script direction or a question. A real reply from a person.</p>
+          <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:center;font:400 10px/1.8 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:rgba(244,243,239,.72)">
+            <span>Audience — {{ sentAudience }}</span>
+            <span style="display:{{ sentTierShow }}">Plan — {{ tierName }}</span>
+            <span>Languages — {{ sentLangs }}</span>
+          </div>
+          </div>
+        </div>
+        <div style="margin-top:clamp(20px,2.6vw,34px);display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+          <a href="/send-one-photograph" style="border:0;background:{{ goldBg }};color:#191306;text-shadow:0 1px 0 rgba(255,248,214,.55);box-shadow:{{ goldShadow }};border-radius:7px;padding:16px 28px;font:600 14px/1 'Plus Jakarta Sans',sans-serif">Send a photograph too</a>
+          <a href="/" style="border:0;border-bottom:1px solid #141414;padding:0 0 5px;align-self:center;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase">Back to the films</a>
+        </div>
+      </div>
+    </sc-if>
+
+  </div>
+</main>
+
+<footer style="background:#101B2B;padding:clamp(22px,3vw,38px) clamp(16px,3vw,40px)">
+  <div style="max-width:1560px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-between;font:400 10px/1.9 'IBM Plex Mono',monospace;letter-spacing:0.12em;text-transform:uppercase;color:#96A0B4">
+    <span>ANTEROOM — advertising films for hotels</span>
+    <span>A producer replies within one working day</span>
+    <span>Registered in the UAE · eleven languages</span>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#8C6B3A&quot;,&quot;options&quot;:[&quot;#8C6B3A&quot;,&quot;#3F5C4A&quot;,&quot;#141414&quot;,&quot;#C2542A&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Palette&quot;}}">
+class Component extends DCLogic {
+  state = {
+    wide: true, cols: 3, step: 0, sent: false, skipAudience: false,
+    audience: '', tier: '',
+    property: '', city: '', website: '',
+    photos: '', shotBy: '',
+    langs: ['English'],
+    name: '', role: '', email: '', phone: ''
+  };
+
+  audienceData = [
+    ['all', 'All audiences combined', 'One campaign, every guest'],
+    ['meetings-events', 'Meetings & Events', 'Win the site visit'],
+    ['couples', 'Couples & Romance', 'Lift weekend rates'],
+    ['leisure', 'Leisure Travellers', 'Win the direct booking'],
+    ['business', 'Business Travellers', 'Take the corporate rate'],
+    ['local', 'Local Guests', 'Fill the restaurant midweek'],
+    ['spa', 'Spa & Wellness', 'Sell the treatment, not the room'],
+    ['destination', 'Destination', 'Make the city the reason'],
+    ['seasonal', 'Seasonal Campaigns', 'Sell out the season']
+  ];
+
+  langData = ['English', 'العربية', 'हिन्दी', 'Русский', 'Deutsch', 'Français', '中文', 'Español', 'Italiano', 'اردو', 'Português'];
+
+  steps = [
+    { key: 'audience', eyebrow: 'Step one', title: 'Who are you trying to win?', hint: 'Pick the guest this film is for. You can add more audiences later.', foot: 'Pick one' },
+    { key: 'property', eyebrow: 'Step two', title: 'Your property.', hint: 'Just enough for us to look you up before we reply.', foot: 'Name and city' },
+    { key: 'photos', eyebrow: 'Step three', title: 'Your photography, and the languages.', hint: 'We work from the images you already own, and rebuild the film in each language — re-voiced, re-paced, re-typeset. Not subtitles.', foot: 'A link, and any languages' },
+    { key: 'you', eyebrow: 'Step four', title: 'And you.', hint: 'So a producer knows who they are writing back to.', foot: 'Name and email' }
+  ];
+
+  gold = 'linear-gradient(180deg,#FFFAE6 2%,#F6E4AE 14%,#F1DA9A 30%,#EED18A 45%,#E4C478 56%,#D9B461 70%,#E0BD69 80%,#E3C070 88%,#DFC070 97%)';
+  goldShadow = 'inset 0 0 0 1px rgba(255,255,255,.5),inset 0 1px 0 rgba(255,255,255,.95),inset 0 7px 12px -7px rgba(255,255,255,.8),inset 0 -1px 0 rgba(255,252,242,.6),0 1px 2px rgba(30,22,6,.22),0 5px 12px -6px rgba(30,22,6,.34)';
+
+  componentDidMount() {
+    this.onResize = () => this.setState(s => {
+      const w = window.innerWidth > 860;
+      const c = window.innerWidth > 1000 ? 3 : (window.innerWidth > 620 ? 2 : 1);
+      return (w === s.wide && c === s.cols) ? null : { wide: w, cols: c };
+    });
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+    try {
+      const p = new URLSearchParams(window.location.search);
+      const a = p.get('audience'), t = p.get('tier');
+      const known = this.audienceData.some(d => d[0] === a);
+      this.setState(() => ({
+        audience: known ? a : '',
+        tier: t || '',
+        skipAudience: !!known,
+        step: known ? 1 : 0
+      }));
+    } catch (e) {}
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
+
+  mixHex(hex, target, amt) {
+    const n = parseInt(String(hex).slice(1), 16);
+    if (isNaN(n)) return hex;
+    const t = parseInt(String(target).slice(1), 16);
+    const c = (sh) => { const a = (n >> sh) & 255, b = (t >> sh) & 255; return Math.round(a + (b - a) * amt); };
+    return 'rgb(' + c(16) + ',' + c(8) + ',' + c(0) + ')';
+  }
+  metalRule(accent) {
+    return 'linear-gradient(180deg,' + this.mixHex(accent, '#FFFFFF', 0.42) + ' 0%,' + this.mixHex(accent, '#FFFFFF', 0.08) + ' 36%,' + accent + ' 60%,' + this.mixHex(accent, '#000000', 0.34) + ' 100%)';
+  }
+
+  tierName(slug) {
+    return { 'one-film': 'One film', 'three-films': 'Three films', 'six-films': 'Six films' }[slug] || '';
+  }
+  set(key) { return (e) => { const v = e.target.value; this.setState(() => ({ [key]: v })); }; }
+
+  complete(s) {
+    const k = this.steps[s.step].key;
+    if (k === 'audience') return !!s.audience;
+    if (k === 'property') return !!(s.property.trim() && s.city.trim());
+    if (k === 'photos') return !!(s.photos.trim() && s.langs.length > 0);
+    if (k === 'you') return !!(s.name.trim() && /.+@.+\..+/.test(s.email));
+    return true;
+  }
+
+  next() {
+    this.setState(s => {
+      if (!this.complete(s)) return null;
+      if (s.step >= this.steps.length - 1) return { sent: true };
+      return { step: s.step + 1 };
+    });
+    if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  back() { this.setState(s => ({ step: Math.max(s.skipAudience ? 1 : 0, s.step - 1) })); }
+
+  renderVals() {
+    const s = this.state, accent = this.props.accent || '#8C6B3A';
+    const ruleBg = this.metalRule(accent);
+    const ruleShadow = 'inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(46,32,10,.4),0 1px 2px rgba(46,32,10,.3)';
+    const q = this.steps[s.step];
+    const ok = this.complete(s);
+    const last = s.step >= this.steps.length - 1;
+    const done = s.step + (ok ? 1 : 0);
+
+    const fieldSets = {
+      property: [
+        ['Property name', 'property', 'The Grand, Dubai Marina', '1 / -1'],
+        ['City', 'city', 'Dubai', 'auto'],
+        ['Website', 'website', 'thegrand.com', 'auto']
+      ],
+      photos: [
+        ['A link to your photography', 'photos', 'Dropbox, Drive, or your press page', '1 / -1'],
+        ['Who shot it, if you know', 'shotBy', 'So we can credit and match the look', '1 / -1']
+      ],
+      you: [
+        ['Your name', 'name', '', 'auto'],
+        ['Your role', 'role', 'Director of Sales', 'auto'],
+        ['Email', 'email', 'you@property.com', 'auto'],
+        ['Phone, if you like', 'phone', 'Optional', 'auto']
+      ]
+    };
+    const fset = fieldSets[q.key] || [];
+
+    return {
+      accent, ruleBg, ruleShadow,
+      goldBg: this.gold, goldShadow: this.goldShadow,
+      navDisplay: s.wide ? 'inline' : 'none',
+      q: { eyebrow: q.eyebrow, title: q.title, hint: q.hint, foot: q.foot },
+      stepLabel: '0' + (s.step + 1) + ' / 0' + this.steps.length,
+      langHeading: 'Languages',
+      progress: Math.round((done / this.steps.length) * 100) + '%',
+
+      notSent: !s.sent, sent: s.sent,
+      hasTier: !!this.tierName(s.tier),
+      tierName: this.tierName(s.tier),
+      clearTier: () => this.setState(() => ({ tier: '' })),
+      sentAudience: (this.audienceData.find(d => d[0] === s.audience) || [, 'Not set'])[1],
+      sentTierShow: this.tierName(s.tier) ? 'inline' : 'none',
+      sentLangs: s.langs.join(', '),
+      isAudience: q.key === 'audience',
+      isFields: !!fieldSets[q.key],
+      isLang: q.key === 'photos',
+
+      audCols: 'repeat(' + s.cols + ',minmax(0,1fr))',
+      fieldCols: s.wide ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      langPrice: '$150',
+
+      audiences: this.audienceData.map((d, i) => {
+        const on = s.audience === d[0];
+        return {
+          num: '0' + (i + 1) === '0' + (i + 1) && i < 9 ? '0' + (i + 1) : String(i + 1),
+          name: d[1], goal: d[2],
+          bg: on ? '#101B2B' : '#FFFFFF',
+          fg: on ? '#FFFFFF' : '#141414',
+          sub: on ? '#C8CEDA' : '#4A4A44',
+          n: on ? '#C4A46E' : '#5E5E58',
+          pick: () => this.setState(() => ({ audience: d[0] }))
+        };
+      }),
+
+
+      fields: fset.map(f => ({
+        label: f[0], ph: f[2], span: f[3],
+        value: s[f[1]], set: this.set(f[1])
+      })),
+
+      langs: this.langData.map(l => {
+        const on = s.langs.indexOf(l) > -1;
+        return {
+          name: l,
+          bg: on ? '#101B2B' : '#FFFFFF',
+          fg: on ? '#FFFFFF' : '#4A4A44',
+          border: on ? '#101B2B' : 'rgba(20,20,20,.2)',
+          pick: () => this.setState(st => ({
+            langs: st.langs.indexOf(l) > -1 ? st.langs.filter(x => x !== l) : st.langs.concat([l])
+          }))
+        };
+      }),
+
+      backShow: s.step > (s.skipAudience ? 1 : 0) ? 'inline' : 'none',
+      back: () => this.back(),
+      next: () => this.next(),
+      nextLabel: last ? 'Send the brief' : 'Next',
+      nextDisabled: !ok,
+      nextCursor: ok ? 'pointer' : 'not-allowed',
+      nextOpacity: ok ? '1' : '.45',
+      nextBg: ok ? this.gold : '#E8E6E1',
+      nextFg: ok ? '#191306' : '#8A8A84',
+      nextShadow: ok ? this.goldShadow : 'none',
+      nextTextShadow: ok ? '0 1px 0 rgba(255,248,214,.55)' : 'none'
+    };
+  }
+}
+</script>
+</body>
+</html>
