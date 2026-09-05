@@ -44,12 +44,36 @@ image-slot{display:block}
       <a href="/pricing" style="border:0;border-radius:999px;padding:9px 15px;font:500 12px/1 'Plus Jakarta Sans',sans-serif;color:#5E5E58">Pricing</a>
       <a href="/studio" style="border:0;border-radius:999px;padding:9px 15px;font:500 12px/1 'Plus Jakarta Sans',sans-serif;color:#5E5E58">Studio</a>
     </nav>
-    <a href="/start-a-brief" style="flex:0 0 auto;border:0;background:{{ goldBg }};color:#191306;text-shadow:0 1px 0 rgba(255,248,214,.55);box-shadow:{{ goldShadow }};border-radius:7px;padding:11px 20px;font:600 12px/1 'Plus Jakarta Sans',sans-serif;white-space:nowrap">Start a brief</a>
+    <div style="display:flex;align-items:center;gap:10px;flex:0 0 auto">
+      <a href="/start-a-brief" style="border:0;background:{{ goldBg }};color:#191306;text-shadow:0 1px 0 rgba(255,248,214,.55);box-shadow:{{ goldShadow }};border-radius:7px;padding:11px 20px;font:600 12px/1 'Plus Jakarta Sans',sans-serif;white-space:nowrap">Start a brief</a>
+      <button onClick="{{ toggleMenu }}" aria-label="Open menu" style="display:{{ burgerDisplay }};background:none;border:1px solid rgba(20,20,20,.2);border-radius:7px;padding:11px 15px;cursor:pointer;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.12em;text-transform:uppercase">Menu</button>
+    </div>
   </div>
 </div>
 
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:90;background:#FFFFFF;padding:20px clamp(16px,3vw,40px) 40px;display:flex;flex-direction:column;animation:fade 300ms ease both">
+    <div style="display:flex;align-items:center;justify-content:space-between;height:42px">
+      <span style="font:600 13px/1 'IBM Plex Mono',monospace;letter-spacing:0.22em">ANTEROOM</span>
+      <button onClick="{{ toggleMenu }}" aria-label="Close menu" style="background:none;border:1px solid rgba(20,20,20,.2);border-radius:7px;padding:10px 15px;cursor:pointer;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.12em;text-transform:uppercase">Close</button>
+    </div>
+    <div style="margin-top:34px;display:flex;flex-direction:column">
+      <a href="/" style="border:0;border-bottom:1px solid rgba(20,20,20,.1);padding:18px 0;font-weight:500;font-size:clamp(24px,7vw,34px);line-height:1.1;letter-spacing:-0.03em;color:#141414">Meetings &amp; Events</a>
+      <a href="/audiences" style="border:0;border-bottom:1px solid rgba(20,20,20,.1);padding:18px 0;font-weight:500;font-size:clamp(24px,7vw,34px);line-height:1.1;letter-spacing:-0.03em;color:#141414">Audiences</a>
+      <a href="/process" style="border:0;border-bottom:1px solid rgba(20,20,20,.1);padding:18px 0;font-weight:500;font-size:clamp(24px,7vw,34px);line-height:1.1;letter-spacing:-0.03em;color:#141414">Process</a>
+      <span style="border-bottom:1px solid rgba(20,20,20,.1);padding:18px 0;font-weight:500;font-size:clamp(24px,7vw,34px);line-height:1.1;letter-spacing:-0.03em;color:#9A9A93">Languages</span>
+      <a href="/pricing" style="border:0;border-bottom:1px solid rgba(20,20,20,.1);padding:18px 0;font-weight:500;font-size:clamp(24px,7vw,34px);line-height:1.1;letter-spacing:-0.03em;color:#141414">Pricing</a>
+      <a href="/studio" style="border:0;border-bottom:1px solid rgba(20,20,20,.1);padding:18px 0;font-weight:500;font-size:clamp(24px,7vw,34px);line-height:1.1;letter-spacing:-0.03em;color:#141414">Studio</a>
+    </div>
+    <div style="margin-top:auto;display:flex;flex-direction:column;gap:14px">
+      <span style="font:400 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Rebuilt per language · Not subtitled</span>
+      <a href="/start-a-brief" style="border:0;text-align:center;background:{{ goldBg }};color:#191306;text-shadow:0 1px 0 rgba(255,248,214,.55);box-shadow:{{ goldShadow }};border-radius:7px;padding:17px 24px;font:600 14px/1 'Plus Jakarta Sans',sans-serif">Start a brief</a>
+    </div>
+  </div>
+</sc-if>
+
 <!-- OPENING -->
-<section style="padding:clamp(44px,6vw,104px) clamp(16px,3vw,40px) clamp(28px,3.6vw,56px)">
+<section style="padding:clamp(32px,4.2vw,72px) clamp(16px,3vw,40px) clamp(22px,2.5vw,40px)">
   <div style="max-width:1560px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center">
     <div style="display:flex;align-items:center;gap:12px;font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.2em;text-transform:uppercase;color:#5E5E58">
       <span style="width:22px;height:3px;border-radius:2px;background:{{ ruleBg }};box-shadow:{{ ruleShadow }};display:block"></span>Eleven languages
@@ -60,7 +84,7 @@ image-slot{display:block}
 </section>
 
 <!-- THE FRAME, CYCLING -->
-<section style="padding:0 clamp(16px,3vw,40px) clamp(44px,6vw,100px)">
+<section style="padding:0 clamp(16px,3vw,40px) clamp(32px,4.2vw,70px)">
   <div style="max-width:1560px;margin:0 auto;position:relative;aspect-ratio:21/9;background:#0C1420;overflow:hidden">
     <img src="/video/fmt-21x9.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
     <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(9,16,28,.4) 0%,rgba(9,16,28,.1) 34%,rgba(9,16,28,.72) 100%)"></div>
@@ -77,7 +101,7 @@ image-slot{display:block}
 </section>
 
 <!-- WHAT CHANGES -->
-<section style="background:#101B2B;color:#F1F3F7;padding:clamp(44px,6vw,100px) clamp(16px,3vw,40px)">
+<section style="background:#101B2B;color:#F1F3F7;padding:clamp(32px,4.2vw,70px) clamp(16px,3vw,40px)">
   <div style="max-width:1560px;margin:0 auto">
     <div style="display:flex;flex-direction:column;align-items:center;text-align:center">
       <h2 style="margin:0;white-space:nowrap;font-weight:500;font-size:clamp(20px,3.2vw,42px);line-height:1.06;letter-spacing:-0.03em;color:#FFFFFF">Six things we rebuild.</h2>
@@ -96,7 +120,7 @@ image-slot{display:block}
 </section>
 
 <!-- THE ELEVEN -->
-<section style="padding:clamp(44px,6vw,100px) clamp(16px,3vw,40px) clamp(30px,4vw,60px)">
+<section style="padding:clamp(32px,4.2vw,70px) clamp(16px,3vw,40px) clamp(22px,2.8vw,42px)">
   <div style="max-width:1560px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center">
     <div style="display:flex;align-items:center;gap:12px;font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.2em;text-transform:uppercase;color:#5E5E58">
       <span style="width:22px;height:3px;border-radius:2px;background:{{ ruleBg }};box-shadow:{{ ruleShadow }};display:block"></span>The eleven
@@ -105,7 +129,7 @@ image-slot{display:block}
   </div>
 </section>
 
-<section style="padding:0 clamp(16px,3vw,40px) clamp(44px,6vw,100px)">
+<section style="padding:0 clamp(16px,3vw,40px) clamp(32px,4.2vw,70px)">
   <div style="max-width:1360px;margin:0 auto;border-top:1px solid rgba(20,20,20,.14)">
     <sc-for list="{{ list }}" as="l" hint-placeholder-count="11">
       <button onClick="{{ l.pick }}" style="width:100%;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 24px;background:{{ l.bg }};border:0;border-bottom:1px solid rgba(20,20,20,.1);padding:clamp(13px,1.6vw,20px) clamp(10px,1.4vw,18px);cursor:pointer;text-align:left;transition:background 400ms cubic-bezier(.22,1,.36,1)">
@@ -118,7 +142,7 @@ image-slot{display:block}
 </section>
 
 <!-- EVIDENCE -->
-<section style="padding:0 clamp(16px,3vw,40px) clamp(44px,6vw,100px)">
+<section style="padding:0 clamp(16px,3vw,40px) clamp(32px,4.2vw,70px)">
   <div style="max-width:1100px;margin:0 auto;border:1px solid rgba(20,20,20,.14);padding:clamp(22px,3vw,44px)">
     <div style="font:400 9px/1.8 'IBM Plex Mono',monospace;letter-spacing:0.16em;text-transform:uppercase;color:#5E5E58">Why it matters</div>
     <p style="margin:14px 0 0;max-width:60ch;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(19px,2.1vw,30px);line-height:1.3;letter-spacing:-0.012em;color:#141414;text-wrap:pretty">Dubai’s four largest source markets in 2025 were India, Saudi Arabia, the United Kingdom and Russia. Three of the four are not English-first markets.</p>
@@ -132,7 +156,7 @@ image-slot{display:block}
 </section>
 
 <!-- PRICE -->
-<section style="padding:0 clamp(16px,3vw,40px) clamp(44px,6vw,100px)">
+<section style="padding:0 clamp(16px,3vw,40px) clamp(32px,4.2vw,70px)">
   <div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:14px 30px;border-top:1px solid rgba(20,20,20,.16);border-bottom:1px solid rgba(20,20,20,.16);padding:clamp(16px,2.2vw,26px) 0">
     <span style="font-weight:500;font-size:clamp(17px,1.8vw,23px);line-height:1.3;letter-spacing:-0.022em">Each extra language edition</span>
     <span style="font:400 14px/1.5 'Plus Jakarta Sans',sans-serif;color:#4A4A44">Adds three working days</span>
@@ -141,9 +165,9 @@ image-slot{display:block}
 </section>
 
 <!-- CLOSE -->
-<section style="padding:clamp(20px,3vw,44px) clamp(16px,3vw,40px) clamp(46px,7vw,110px)">
+<section style="padding:clamp(16px,2.2vw,32px) clamp(16px,3vw,40px) clamp(32px,4.8vw,76px)">
   <div style="max-width:1560px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center">
-    <h2 style="margin:0;white-space:nowrap;font-weight:500;font-size:clamp(22px,3.6vw,48px);line-height:1.06;letter-spacing:-0.032em">Which language do your guests book in?</h2>
+    <h2 style="margin:0;white-space:{{ nowrap }};font-weight:500;font-size:clamp(22px,3.6vw,48px);line-height:1.06;letter-spacing:-0.032em">Which language do your guests book in?</h2>
     <div style="margin-top:clamp(22px,3vw,34px);display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
       <a href="/start-a-brief" style="border:0;background:{{ goldBg }};color:#191306;text-shadow:0 1px 0 rgba(255,248,214,.55);box-shadow:{{ goldShadow }};border-radius:7px;padding:16px 28px;font:600 14px/1 'Plus Jakarta Sans',sans-serif">Start a brief</a>
       <a href="/send-one-photograph" style="border:0;border-bottom:1px solid #141414;padding:0 0 5px;align-self:center;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase">Send one photograph</a>
@@ -163,7 +187,7 @@ image-slot{display:block}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#8C6B3A&quot;,&quot;options&quot;:[&quot;#8C6B3A&quot;,&quot;#3F5C4A&quot;,&quot;#141414&quot;,&quot;#C2542A&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Palette&quot;}}">
 class Component extends DCLogic {
-  state = { wide: true, cur: 0 };
+  state = { wide: true, cur: 0, menuOpen: false };
 
   JAK = "'Plus Jakarta Sans',Helvetica,sans-serif";
   AR = "'Noto Sans Arabic','Plus Jakarta Sans',sans-serif";
@@ -237,6 +261,10 @@ class Component extends DCLogic {
       ruleShadow: 'inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(46,32,10,.4),0 1px 2px rgba(46,32,10,.3)',
       goldBg: this.gold, goldShadow: this.goldShadow,
       navDisplay: s.wide ? 'flex' : 'none',
+      burgerDisplay: s.wide ? 'none' : 'block',
+      menuOpen: s.menuOpen,
+      toggleMenu: () => this.setState(st => ({ menuOpen: !st.menuOpen })),
+      nowrap: s.wide ? 'nowrap' : 'normal',
       sixCols: s.wide ? 'repeat(3,minmax(0,1fr))' : 'minmax(0,1fr)',
 
       live: { code: d[2], line: d[3], name: d[1], note: d[4], font: fontFor(d[5]), dir: d[6] },
