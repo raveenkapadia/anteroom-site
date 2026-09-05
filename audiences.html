@@ -147,14 +147,14 @@ class Component extends DCLogic {
   state = { wide: true, cols: 4, menuOpen: false, picked: null };
 
   data = [
-    ['Meetings & Events', 'meetings-events', 'Ballroom enquiries', 1],
-    ['Couples & Romance', 'couples', 'Direct weekend bookings', 9],
-    ['Leisure Travellers', 'leisure', 'Direct bookings over OTAs', 2],
-    ['Business Travellers', 'business', 'Corporate rate agreements', 4],
-    ['Local Guests', 'local', 'Covers, not rooms', 7],
-    ['Spa & Wellness', 'spa', 'Midweek treatments', 10],
-    ['Destination', 'destination', 'Reach before the choice', 11],
-    ['Seasonal Campaigns', 'seasonal', 'Demand when you need it', 12]
+    ['Meetings & Events', 'meetings-events', 'Ballroom enquiries', 5],
+    ['Couples & Romance', 'couples', 'Direct weekend bookings', 2],
+    ['Leisure Travellers', 'leisure', 'Direct bookings over OTAs', 1],
+    ['Business Travellers', 'business', 'Corporate rate agreements', 8],
+    ['Local Guests', 'local', 'Covers, not rooms', 4],
+    ['Spa & Wellness', 'spa', 'Midweek treatments', 7],
+    ['Destination', 'destination', 'Reach before the choice', 6],
+    ['Seasonal Campaigns', 'seasonal', 'Demand when you need it', 3]
   ];
 
   componentDidMount() {
@@ -219,7 +219,7 @@ class Component extends DCLogic {
       cols: s.cols === 1 ? 'minmax(0,1fr)' : 'repeat(' + s.cols + ',minmax(0,1fr))',
       audiences: this.data.map((d, i) => ({
         name: d[0], short: d[1], goal: d[2],
-        img: 'img/scene-' + d[3] + '.png',
+        img: '/video/scene-' + d[3] + '.jpg',
         slot: 'aud-' + d[1],
         no: String(i + 1).padStart(2, '0'),
         pick: () => { this.setState(() => ({ picked: i })); this.jump('brief'); }

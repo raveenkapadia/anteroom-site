@@ -412,9 +412,9 @@ class Component extends DCLogic {
   ];
 
   quoteData = [
-    ['We stopped explaining the ballroom on calls. We send the film and they ask about dates.', 'Director of Sales · city hotel, 340 keys', 1, 'SC 01 — BANQUET'],
-    ['It reads like an advertisement, not a hotel video. That was the whole point.', 'Commercial Director · resort group', 3, 'SC 03 — RECEPTION'],
-    ['The Arabic edition was not a subtitle track. That is why it worked here.', 'Marketing Lead · Gulf property', 6, 'SC 06 — AV']
+    ['We stopped explaining the ballroom on calls. We send the film and they ask about dates.', 'Director of Sales · city hotel, 340 keys', 5, 'SC 05 — EVENT SPACES'],
+    ['It reads like an advertisement, not a hotel video. That was the whole point.', 'Commercial Director · resort group', 1, 'SC 01 — RECEPTION'],
+    ['The Arabic edition was not a subtitle track. That is why it worked here.', 'Marketing Lead · Gulf property', 6, 'SC 06 — THEATRE']
   ];
 
   componentDidMount() {
@@ -435,7 +435,7 @@ class Component extends DCLogic {
     window.addEventListener('keydown', this.onKey);
     this.onResize();
     if (!this.reduced) {
-      this.timer = setInterval(() => this.setState(s => ({ shot: (s.shot + 1) % 8 })), 4600);
+      this.timer = setInterval(() => this.setState(s => ({ shot: (s.shot + 1) % 8 })), 5200);
       this.statTimer = setInterval(() => this.setState(s => ({ stat: (s.stat + 1) % 3 })), 4800);
     }
     this.onWinScroll = () => {
@@ -532,7 +532,7 @@ class Component extends DCLogic {
 
       process: this.processData.map((d, i) => ({
         n: d[0], name: d[1], note: d[2], who: d[3].toUpperCase(),
-        img: 'img/scene-' + d[4] + '.png',
+        img: '/video/scene-' + d[4] + '.jpg',
         slot: 'v2-proc-' + d[0],
         rule: i === 0 ? accent : 'rgba(20,20,20,.14)',
         tone: i === 0 ? accent : '#5E5E58',
@@ -573,7 +573,7 @@ class Component extends DCLogic {
       })),
       quotes: this.quoteData.map((q, i) => ({
         text: q[0], who: q[1], frame: q[3],
-        img: 'img/scene-' + q[2] + '.png',
+        img: '/video/scene-' + q[2] + '.jpg',
         slot: 'v2-said-' + (i + 1),
         ar: s.cols === 3 ? ['1/1', '5/4', '4/5'][i] : '16/9',
         offset: s.cols === 3 ? ['0px', 'clamp(20px,3vw,52px)', 'clamp(10px,1.6vw,28px)'][i] : '0px'
