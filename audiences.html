@@ -86,7 +86,7 @@ image-slot{display:block}
 <!-- SAME PROPERTY BAND -->
 <section style="padding:0 0 clamp(26px,3.4vw,52px)">
   <div style="position:relative;height:clamp(200px,36vh,360px);overflow:hidden;background:#0C1420">
-    <image-slot id="aud-band" shape="rect" fit="cover" src="/img/hero.png" placeholder="The same property, seen eight ways" style="width:100%;height:100%"></image-slot>
+    <video src="/video/hero.mp4" poster="/video/hero.jpg" autoPlay="true" muted="true" loop="true" playsInline="true" preload="auto" style="width:100%;height:100%;object-fit:cover;display:block"></video>
     <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(9,16,28,.5) 0%,rgba(9,16,28,.18) 44%,rgba(9,16,28,.6) 100%)"></div>
     <div style="position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);padding:0 clamp(20px,5vw,64px);text-align:center;pointer-events:none">
       <p style="margin:0 auto;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:clamp(19px,2.7vw,40px);line-height:1.16;letter-spacing:-0.012em;color:#FFFFFF">Every frame below is one property.</p>
@@ -227,6 +227,38 @@ class Component extends DCLogic {
     };
   }
 }
+</script>
+<script>
+/* Media behaviour only — no layout, no visual change.
+   Forces muted autoplay (Safari/iOS require the property, not just the attribute)
+   and pauses videos that are off-screen so we never decode four films at once. */
+(function () {
+  var seen = new WeakSet();
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      var v = e.target;
+      if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      else if (!v.paused) { v.pause(); }
+    });
+  }, { rootMargin: '200px 0px', threshold: 0.01 }) : null;
+
+  function adopt(v) {
+    if (seen.has(v)) return;
+    seen.add(v);
+    v.muted = true; v.defaultMuted = true; v.playsInline = true; v.loop = true; v.controls = false;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    if (io) io.observe(v); else { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  }
+
+  function scan() { document.querySelectorAll('video').forEach(adopt); }
+
+  scan();
+  if (window.MutationObserver) {
+    new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
+  }
+  window.addEventListener('load', scan);
+})();
 </script>
 </body>
 </html>

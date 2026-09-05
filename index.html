@@ -109,7 +109,7 @@ image-slot{display:block}
 <!-- HERO -->
 <section style="position:relative">
   <div style="position:relative;height:clamp(560px,92vh,960px);overflow:hidden;background:#0C1420;animation:fade 900ms ease both">
-    <image-slot id="v2-open" shape="rect" fit="cover" src="/img/hero.png" placeholder="Ballroom at capacity — 2.39:1, wide, from the back of the room" style="width:100%;height:100%"></image-slot>
+    <video src="/video/hero.mp4" poster="/video/hero.jpg" autoPlay="true" muted="true" loop="true" playsInline="true" preload="auto" style="width:100%;height:100%;object-fit:cover;display:block"></video>
     <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(9,16,28,.42) 0%,rgba(9,16,28,.2) 16%,rgba(9,16,28,.52) 38%,rgba(9,16,28,.62) 56%,rgba(9,16,28,.7) 78%,rgba(9,16,28,.34) 100%)"></div>
     <div style="position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);padding:0 clamp(20px,5vw,64px);text-align:center;pointer-events:none">
       <div style="max-width:26ch;margin:0 auto">
@@ -163,10 +163,10 @@ image-slot{display:block}
 <!-- COMPARE -->
 <section id="compare" style="padding:0 0 clamp(52px,7vw,116px)">
   <div style="position:relative;height:clamp(340px,74vh,780px);overflow:hidden;background:#0C1420;user-select:none">
-    <image-slot id="v2-after" shape="rect" fit="cover" src="/img/after.png" placeholder="THE FILM — same ballroom, 400 people, stage lit" style="width:100%;height:100%"></image-slot>
+    <video src="/video/after.mp4" poster="/video/after.jpg" autoPlay="true" muted="true" loop="true" playsInline="true" preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block"></video>
     <div style="position:absolute;inset:0;overflow:hidden;width:{{ splitPct }};border-right:1px solid rgba(255,255,255,.9)">
       <div style="position:absolute;top:0;left:0;height:100%;width:{{ splitInverse }}">
-        <image-slot id="v2-before" shape="rect" fit="cover" src="/img/before.png" placeholder="THE PHOTOGRAPH — empty ballroom" style="width:100%;height:100%"></image-slot>
+        <img src="/img/before.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
     </div>
     <div style="position:absolute;top:clamp(14px,2vw,26px);left:clamp(16px,3vw,40px);pointer-events:none;font:400 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,.92)">Your photograph</div>
@@ -230,7 +230,7 @@ image-slot{display:block}
       <div style="font:400 12px/1.5 'Plus Jakarta Sans',sans-serif;color:#5A5A54">{{ shot.spec }} — scripted, cast, graded, scored.</div>
     </div>
     <div style="flex:1 1 480px;min-width:0;position:relative;min-height:clamp(280px,58vh,660px)">
-      <image-slot id="v2-reel" shape="rect" fit="cover" src="{{ shot.img }}" placeholder="{{ shot.plate }}" style="width:100%;height:100%;position:absolute;inset:0"></image-slot>
+      <video src="{{ shot.video }}" poster="{{ shot.poster }}" autoPlay="true" muted="true" loop="true" playsInline="true" preload="auto" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;display:block"></video>
       <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(9,16,28,.32) 0%,rgba(9,16,28,0) 32%,rgba(9,16,28,.06) 60%,rgba(9,16,28,.62) 100%)"></div>
       <div style="position:absolute;top:clamp(13px,1.8vw,22px);left:clamp(14px,2vw,26px);right:clamp(14px,2vw,26px);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;pointer-events:none;font:400 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,.92)">
         <span>{{ shot.tag }}</span><span>{{ shot.counter }}</span>
@@ -254,8 +254,8 @@ image-slot{display:block}
       </sc-for>
     </div>
     <div style="margin-top:clamp(20px,2.6vw,34px);border-top:1px solid rgba(20,20,20,.12);padding-top:18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px">
-      <p style="margin:0;white-space:nowrap;font-weight:500;font-size:clamp(14px,2.05vw,24px);line-height:1.25;letter-spacing:-0.022em">Eight scenes become one film — thirty-four seconds.</p>
-      <span style="font:400 10px/1.8 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Assembly · 00:00 → 00:34</span>
+      <p style="margin:0;white-space:nowrap;font-weight:500;font-size:clamp(14px,2.05vw,24px);line-height:1.25;letter-spacing:-0.022em">Eight scenes become one film — forty-seven seconds.</p>
+      <span style="font:400 10px/1.8 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Assembly · 00:00 → 00:47</span>
     </div>
   </div>
 </section>
@@ -274,7 +274,7 @@ image-slot{display:block}
       <sc-for list="{{ formats }}" as="f" hint-placeholder-count="4">
         <div style="flex:{{ f.flex }} 1 {{ f.basis }};min-width:0">
           <div style="position:relative;aspect-ratio:{{ f.ar }};overflow:hidden;background:#0C1420">
-            <image-slot id="{{ f.slot }}" shape="rect" fit="cover" src="{{ f.img }}" placeholder="{{ f.ratio }}" style="width:100%;height:100%"></image-slot>
+            <video src="{{ f.video }}" poster="{{ f.img }}" autoPlay="true" muted="true" loop="true" playsInline="true" preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block"></video>
           </div>
           <div style="margin-top:11px;display:flex;justify-content:space-between;gap:10px;font:400 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">
             <span style="color:#141414">{{ f.name }}</span><span>{{ f.spec }}</span>
@@ -363,14 +363,14 @@ class Component extends DCLogic {
   state = { wide: true, cols: 3, menuOpen: false, shot: 0, stat: 0, quote: 0, split: 50, sec: 'compare', past: false, sent: false, order: { property: '', email: '' } };
 
   sceneData = [
-    ['Banquet','Ballroom — banquet set, 400 covers','SC 01 — BANQUET','16:9 · 00:06','Proves the room seats four hundred.'],
-    ['Theatre','Ballroom — theatre, keynote light','SC 02 — THEATRE','16:9 · 00:05','Every seat can see the stage.'],
-    ['Reception','Ballroom — standing reception','SC 03 — RECEPTION','16:9 · 00:04','Sells the evening, not just the day.'],
-    ['Foyer','Foyer — registration at 08:40','SC 04 — FOYER','16:9 · 00:06','Four hundred arrive without a queue.'],
-    ['Breakouts','Breakout — three rooms, one corridor','SC 05 — BREAKOUT','4:5 · 00:04','Three sessions running at once.'],
-    ['AV & stage','Stage — screen, truss, sightlines','SC 06 — AV','16:9 · 00:05','Their production team stops worrying.'],
-    ['The break','Break — 400 people, 20 minutes','SC 07 — BREAK','16:9 · 00:04','Coffee for everyone in twenty minutes.'],
-    ['The reset','Reset — plenary to dinner in 40 min','SC 08 — RESET','21:9 · 00:04','Plenary to dinner in forty minutes.']
+    ['Reception','Lobby lounge — mid-morning','SC 01 — RECEPTION','21:9 · 00:05','Arrival that reads calm, not queued.'],
+    ['Bedrooms','Guest room — morning light','SC 02 — BEDROOMS','21:9 · 00:05','The room they book again.'],
+    ['Restaurant','Kitchen — open pass, full covers','SC 03 — RESTAURANT','21:9 · 00:05','A reason to eat in, not out.'],
+    ['Bar','Bar — evening, first drinks','SC 04 — BAR','21:9 · 00:05','The evening starts downstairs.'],
+    ['Event spaces','Ballroom — dinner, full length','SC 05 — EVENT SPACES','21:9 · 00:05','Proves the room does a dinner.'],
+    ['Theatre','Screening room — house lights down','SC 06 — THEATRE','21:9 · 00:05','A private room for a private audience.'],
+    ['Spa','Treatment room — single guest','SC 07 — SPA','21:9 · 00:05','The reason to arrive a day early.'],
+    ['Gym','Gym — early, machines running','SC 08 — GYM','21:9 · 00:05','Open before the first meeting.']
   ];
 
   processData = [
@@ -388,10 +388,10 @@ class Component extends DCLogic {
   ];
 
   formatData = [
-    ['The film', '16/9', '16:9 · 00:34', 'Your website and sales decks', '2.2', '320px', 'v2-fmt-hero', 'img/scene-1.png'],
-    ['Vertical', '9/16', '9:16 · 00:15', 'Instagram and LinkedIn', '.8', '150px', 'v2-fmt-vert', 'img/scene-3.png'],
-    ['Square', '1/1', '1:1 · 00:10', 'Feed and email', '1', '190px', 'v2-fmt-sq', 'img/scene-7.png'],
-    ['Silent loop', '21/9', '21:9 · 00:24', 'Trade stands and lobby screens', '1.8', '260px', 'v2-fmt-loop', 'img/scene-2.png']
+    ['The film', '16/9', '16:9 · 00:47', 'Your website and sales decks', '2.2', '320px', 'v2-fmt-hero', '/video/fmt-16x9.jpg', '/video/fmt-16x9.mp4'],
+    ['Vertical', '9/16', '9:16 · 00:21', 'Instagram and LinkedIn', '.8', '150px', 'v2-fmt-vert', '/video/fmt-9x16.jpg', '/video/fmt-9x16.mp4'],
+    ['Square', '1/1', '1:1 · 00:47', 'Feed and email', '1', '190px', 'v2-fmt-sq', '/video/fmt-1x1.jpg', '/video/fmt-1x1.mp4'],
+    ['Silent loop', '21/9', '21:9 · 00:47', 'Trade stands and lobby screens', '1.8', '260px', 'v2-fmt-loop', '/video/fmt-21x9.jpg', '/video/fmt-21x9.mp4']
   ];
 
   statData = [
@@ -547,13 +547,15 @@ class Component extends DCLogic {
       shot: {
         plate: x[1], tag: x[2], spec: x[3], does: x[4],
         img: 'img/scene-' + (s.shot + 1) + '.png',
+        video: '/video/scene-' + (s.shot + 1) + '.mp4',
+        poster: '/video/scene-' + (s.shot + 1) + '.jpg',
         supplied: 'img/supplied-' + (s.shot + 1) + '.png',
         suppliedSlot: 'v2-sup-' + (s.shot + 1),
         counter: String(s.shot + 1).padStart(2, '0') + ' / 08'
       },
       scenes: this.sceneData.map((d, i) => ({
         name: d[0], pick: () => this.pick(i),
-        img: 'img/scene-' + (i + 1) + '.png',
+        img: '/video/scene-' + (i + 1) + '.jpg',
         slot: 'v2-thumb-' + (i + 1),
         dim: s.shot === i ? '1' : '.5',
         bar: s.shot === i ? this.metalRule(accent, true) : 'rgba(20,20,20,.1)',
@@ -563,7 +565,7 @@ class Component extends DCLogic {
 
       formats: this.formatData.map(d => ({
         name: d[0], ar: d[1], ratio: d[2].split(' · ')[0], spec: d[2], where: d[3],
-        flex: d[4], basis: d[5], slot: d[6], img: d[7]
+        flex: d[4], basis: d[5], slot: d[6], img: d[7], video: d[8]
       })),
 
       ticker: this.tickerData.concat(this.tickerData).map((t, i) => ({
@@ -592,6 +594,38 @@ class Component extends DCLogic {
     };
   }
 }
+</script>
+<script>
+/* Media behaviour only — no layout, no visual change.
+   Forces muted autoplay (Safari/iOS require the property, not just the attribute)
+   and pauses videos that are off-screen so we never decode four films at once. */
+(function () {
+  var seen = new WeakSet();
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      var v = e.target;
+      if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      else if (!v.paused) { v.pause(); }
+    });
+  }, { rootMargin: '200px 0px', threshold: 0.01 }) : null;
+
+  function adopt(v) {
+    if (seen.has(v)) return;
+    seen.add(v);
+    v.muted = true; v.defaultMuted = true; v.playsInline = true; v.loop = true; v.controls = false;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    if (io) io.observe(v); else { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  }
+
+  function scan() { document.querySelectorAll('video').forEach(adopt); }
+
+  scan();
+  if (window.MutationObserver) {
+    new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
+  }
+  window.addEventListener('load', scan);
+})();
 </script>
 </body>
 </html>
