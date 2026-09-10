@@ -85,9 +85,11 @@ input:focus-visible,button:focus-visible{outline:2px solid #8C6B3A;outline-offse
             <span style="font:400 9px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:#5E5E58">Where to send it</span>
             <input value="{{ email }}" onInput="{{ setEmail }}" placeholder="you@property.com" style="width:100%;background:#FFFFFF;border:1px solid rgba(20,20,20,.2);border-radius:4px;padding:14px 16px;font:400 15px/1.4 'Plus Jakarta Sans',sans-serif">
           </label>
+          <input onInput="{{ setCompany }}" tabindex="-1" autoComplete="off" aria-hidden="true" placeholder="Company" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0">
         </div>
 
-        <button onClick="{{ send }}" disabled="{{ disabled }}" style="margin-top:20px;width:100%;background:{{ btnBg }};color:{{ btnFg }};text-shadow:{{ btnTextShadow }};box-shadow:{{ btnShadow }};border:0;border-radius:7px;padding:17px 24px;cursor:{{ btnCursor }};font:600 14px/1 'Plus Jakarta Sans',sans-serif;opacity:{{ btnOpacity }};transition:opacity 350ms">Send the photograph</button>
+        <button onClick="{{ send }}" disabled="{{ disabled }}" style="margin-top:20px;width:100%;background:{{ btnBg }};color:{{ btnFg }};text-shadow:{{ btnTextShadow }};box-shadow:{{ btnShadow }};border:0;border-radius:7px;padding:17px 24px;cursor:{{ btnCursor }};font:600 14px/1 'Plus Jakarta Sans',sans-serif;opacity:{{ btnOpacity }};transition:opacity 350ms">{{ btnLabel }}</button>
+        <p style="display:{{ errShow }};margin:12px 0 0;font:400 13px/1.6 'Plus Jakarta Sans',sans-serif;color:#A33B23">{{ err }}</p>
         <p style="margin:14px 0 0;font:400 12px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.05em;color:#5E5E58">No obligation, and we will not add you to anything.</p>
       </div>
     </sc-if>
@@ -117,10 +119,66 @@ input:focus-visible,button:focus-visible{outline:2px solid #8C6B3A;outline-offse
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#8C6B3A&quot;,&quot;options&quot;:[&quot;#8C6B3A&quot;,&quot;#3F5C4A&quot;,&quot;#141414&quot;,&quot;#C2542A&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Palette&quot;}}">
 class Component extends DCLogic {
-  state = { wide: true, file: '', property: '', email: '', sent: false };
+  state = { wide: true, file: '', property: '', email: '', sent: false, busy: false, err: '' };
 
   gold = 'linear-gradient(180deg,#FFFAE6 2%,#F6E4AE 14%,#F1DA9A 30%,#EED18A 45%,#E4C478 56%,#D9B461 70%,#E0BD69 80%,#E3C070 88%,#DFC070 97%)';
   goldShadow = 'inset 0 0 0 1px rgba(255,255,255,.5),inset 0 1px 0 rgba(255,255,255,.95),inset 0 7px 12px -7px rgba(255,255,255,.8),inset 0 -1px 0 rgba(255,252,242,.6),0 1px 2px rgba(30,22,6,.22),0 5px 12px -6px rgba(30,22,6,.34)';
+
+  // The platform caps a request body at 4.5 MB, so the browser does the
+  // shrinking. A photograph small enough already is passed through untouched
+  // rather than re-encoded, which would only lose quality for nothing.
+  async shrink(file) {
+    const MAXPX = 2560, LIMIT = 3.6 * 1024 * 1024;
+    const okType = /^image\/(jpeg|png|webp)$/.test(file.type);
+    if (okType && file.size <= LIMIT) return file;
+
+    let bmp = null;
+    try { bmp = await createImageBitmap(file); } catch (e) { bmp = null; }
+    if (!bmp) throw new Error('That file could not be read as an image. Try a JPEG.');
+
+    const scale = Math.min(1, MAXPX / Math.max(bmp.width, bmp.height));
+    const w = Math.max(1, Math.round(bmp.width * scale));
+    const h = Math.max(1, Math.round(bmp.height * scale));
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    c.getContext('2d').drawImage(bmp, 0, 0, w, h);
+    if (bmp.close) bmp.close();
+
+    let q = 0.86;
+    for (let i = 0; i < 6; i++) {
+      const blob = await new Promise(r => c.toBlob(r, 'image/jpeg', q));
+      if (!blob) break;
+      if (blob.size <= LIMIT) return blob;
+      q -= 0.14;
+    }
+    throw new Error('That photograph is too large. Try one under 4 MB.');
+  }
+
+  async send() {
+    if (this.state.busy) return;
+    const s = this.state;
+    this.setState(() => ({ busy: true, err: '' }));
+    try {
+      if (!this.picked) throw new Error('Choose a photograph first.');
+      const blob = await this.shrink(this.picked);
+      const res = await fetch('/api/photo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': blob.type || 'image/jpeg',
+          'x-email': s.email.trim(),
+          'x-property': encodeURIComponent(s.property.trim()),
+          'x-company': this.hp || ''
+        },
+        body: blob
+      });
+      let body = {};
+      try { body = await res.json(); } catch (e) {}
+      if (!res.ok) throw new Error(body.error || 'We could not send that. Please try again in a moment.');
+      this.setState(() => ({ sent: true, busy: false }));
+    } catch (e) {
+      this.setState(() => ({ busy: false, err: (e && e.message) || 'Something went wrong. Please try again.' }));
+    }
+  }
 
   componentDidMount() {
     this.onResize = () => this.setState(s => {
@@ -160,21 +218,26 @@ class Component extends DCLogic {
       fileTone: s.file ? '#141414' : '#8A8A84',
       setFile: (e) => {
         const f = e.target.files && e.target.files[0];
-        this.setState(() => ({ file: f ? f.name : '' }));
+        this.picked = f || null;
+        this.setState(() => ({ file: f ? f.name : '', err: '' }));
       },
+      setCompany: (e) => { this.hp = e.target.value; },
       property: s.property,
       setProperty: (e) => { const v = e.target.value; this.setState(() => ({ property: v })); },
       email: s.email,
       setEmail: (e) => { const v = e.target.value; this.setState(() => ({ email: v })); },
 
-      disabled: !ok,
-      btnCursor: ok ? 'pointer' : 'not-allowed',
+      disabled: !ok || s.busy,
+      btnCursor: (ok && !s.busy) ? 'pointer' : 'not-allowed',
       btnOpacity: ok ? '1' : '.45',
       btnBg: ok ? this.gold : '#E8E6E1',
       btnFg: ok ? '#191306' : '#8A8A84',
       btnShadow: ok ? this.goldShadow : 'none',
       btnTextShadow: ok ? '0 1px 0 rgba(255,248,214,.55)' : 'none',
-      send: () => { if (ok) this.setState(() => ({ sent: true })); }
+      btnLabel: s.busy ? 'Sending the photograph…' : 'Send the photograph',
+      err: s.err,
+      errShow: s.err ? 'block' : 'none',
+      send: () => { if (ok) this.send(); }
     };
   }
 }

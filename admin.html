@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>ANTEROOM — Leads</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#FFFFFF;color:#141414;-webkit-font-smoothing:antialiased;
+  font:400 15px/1.6 'Plus Jakarta Sans',system-ui,sans-serif}
+.mono{font:400 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58}
+header{border-bottom:1px solid rgba(20,20,20,.1);padding:22px clamp(16px,3vw,40px);
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;position:sticky;top:0;background:#fff;z-index:5}
+.brand{font-weight:700;letter-spacing:0.12em;font-size:14px}
+main{max-width:1400px;margin:0 auto;padding:clamp(20px,3vw,40px) clamp(16px,3vw,40px) 90px}
+button{font:600 13px/1 'Plus Jakarta Sans',sans-serif;border:0;border-radius:7px;padding:11px 18px;cursor:pointer;
+  background:#141414;color:#fff}
+button.ghost{background:transparent;color:#5E5E58;border:1px solid rgba(20,20,20,.16)}
+button:disabled{opacity:.45;cursor:default}
+input,select,textarea{font:400 14px/1.5 'Plus Jakarta Sans',sans-serif;color:#141414;background:#fff;
+  border:1px solid rgba(20,20,20,.18);border-radius:6px;padding:11px 12px;width:100%}
+textarea{resize:vertical;min-height:64px}
+.gate{max-width:420px;margin:16vh auto;padding:0 20px}
+.gate p{color:#5E5E58;font-size:14px}
+.row{border:1px solid rgba(20,20,20,.1);border-radius:10px;padding:18px;margin-bottom:12px;
+  display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1.1fr) minmax(0,1fr);gap:20px}
+@media (max-width:900px){.row{grid-template-columns:minmax(0,1fr)}}
+.k{display:block;margin-bottom:2px}
+.v{font-size:14px;word-break:break-word}
+.v.dim{color:#5E5E58}
+.pill{display:inline-block;padding:4px 10px;border-radius:999px;font:500 10px/1.6 'IBM Plex Mono',monospace;
+  letter-spacing:0.12em;text-transform:uppercase}
+.s-new{background:#F1DA9A;color:#191306}
+.s-contacted{background:#E4E9F2;color:#101B2B}
+.s-quoted{background:#DCE8DE;color:#1D3524}
+.s-won{background:#101B2B;color:#F1F3F7}
+.s-lost{background:#EFEFEE;color:#5E5E58}
+.k-photo{background:#F4EDE2;color:#5A4526}
+.k-brief{background:#EAEFF6;color:#22364F}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.filters button{padding:8px 14px;font-size:12px}
+.filters button[aria-pressed=true]{background:#141414;color:#fff}
+.filters button[aria-pressed=false]{background:transparent;color:#5E5E58;border:1px solid rgba(20,20,20,.16)}
+.thumb{display:block;width:100%;max-width:220px;border-radius:8px;border:1px solid rgba(20,20,20,.1)}
+.shot{display:flex;align-items:center;justify-content:center;width:100%;max-width:220px;min-height:120px;border-radius:8px;border:1px dashed rgba(20,20,20,.14);background:#FBFAF8;color:#8A8A84}
+.shot img{margin:0}
+.note{margin-top:8px;display:flex;gap:8px;align-items:flex-start}
+.note button{padding:9px 14px;font-size:12px;white-space:nowrap}
+.msg{margin:0 0 16px;padding:12px 14px;border-radius:8px;font-size:14px}
+.msg.err{background:#FBECEC;color:#7A2020}
+.msg.ok{background:#E9F2EA;color:#1D3524}
+.empty{color:#5E5E58;padding:60px 0;text-align:center}
+a{color:#141414}
+</style>
+</head>
+<body>
+
+<div id="gate" class="gate">
+  <p class="mono">ANTEROOM · LEADS</p>
+  <h1 style="font-size:30px;line-height:1.15;letter-spacing:-0.03em;margin:8px 0 10px">Access token</h1>
+  <p>Paste the value of <code>ADMIN_TOKEN</code>. It is kept for this tab only and never written to disk.</p>
+  <div id="gateErr" class="msg err" style="display:none"></div>
+  <input id="tok" type="password" autocomplete="off" spellcheck="false" placeholder="Token">
+  <button id="go" style="margin-top:12px;width:100%">Open</button>
+</div>
+
+<div id="app" style="display:none">
+  <header>
+    <span class="brand">ANTEROOM</span>
+    <span class="mono">Leads</span>
+    <span id="count" class="mono" style="margin-left:auto"></span>
+    <button id="refresh" class="ghost">Refresh</button>
+    <button id="out" class="ghost">Lock</button>
+  </header>
+  <main>
+    <div id="banner"></div>
+    <div class="filters" id="filters"></div>
+    <div id="list"></div>
+  </main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var STATUSES = ['new', 'contacted', 'quoted', 'won', 'lost'];
+  var token = sessionStorage.getItem('ar_admin') || '';
+  var leads = [];
+  var filter = 'all';
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function api(method, body) {
+    return fetch('/api/leads', {
+      method: method,
+      headers: Object.assign(
+        { Authorization: 'Bearer ' + token },
+        body ? { 'Content-Type': 'application/json' } : {}
+      ),
+      body: body ? JSON.stringify(body) : undefined
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (j) {
+        if (!r.ok) throw new Error(j.error || ('Request failed (' + r.status + ')'));
+        return j;
+      });
+    });
+  }
+
+  function banner(kind, text) {
+    $('banner').innerHTML = text ? '<div class="msg ' + kind + '">' + esc(text) + '</div>' : '';
+    if (text && kind === 'ok') setTimeout(function () { $('banner').innerHTML = ''; }, 2500);
+  }
+
+  function when(iso) {
+    var d = new Date(iso);
+    if (isNaN(d)) return '—';
+    var mins = Math.round((Date.now() - d.getTime()) / 60000);
+    var ago = mins < 1 ? 'just now'
+      : mins < 60 ? mins + 'm ago'
+      : mins < 1440 ? Math.round(mins / 60) + 'h ago'
+      : Math.round(mins / 1440) + 'd ago';
+    return d.toLocaleString(undefined, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) + ' · ' + ago;
+  }
+
+  function field(label, value, dim) {
+    if (!value) return '';
+    return '<div style="margin-bottom:9px"><span class="mono k">' + esc(label) + '</span>' +
+           '<span class="v' + (dim ? ' dim' : '') + '">' + esc(value) + '</span></div>';
+  }
+
+  function render() {
+    var shown = leads.filter(function (l) { return filter === 'all' || l.status === filter; });
+
+    $('count').textContent = leads.length + ' total · ' +
+      leads.filter(function (l) { return l.status === 'new'; }).length + ' new';
+
+    $('filters').innerHTML = ['all'].concat(STATUSES).map(function (f) {
+      var n = f === 'all' ? leads.length : leads.filter(function (l) { return l.status === f; }).length;
+      return '<button data-f="' + f + '" aria-pressed="' + (filter === f) + '">' +
+             esc(f) + ' (' + n + ')</button>';
+    }).join('');
+
+    if (!shown.length) {
+      $('list').innerHTML = '<p class="empty">Nothing here yet.</p>';
+      return;
+    }
+
+    $('list').innerHTML = shown.map(function (l) {
+      var who = '<div style="margin-bottom:12px">' +
+        '<span class="pill k-' + esc(l.kind) + '">' + esc(l.kind) + '</span> ' +
+        '<span class="pill s-' + esc(l.status) + '">' + esc(l.status) + '</span>' +
+        '<div class="mono" style="margin-top:8px">#' + l.id + ' · ' + esc(when(l.created_at)) +
+        (l.source_country ? ' · ' + esc(l.source_country) : '') + '</div></div>';
+
+      var left = who +
+        field('Property', l.property) +
+        field('Name', l.contact_name) +
+        '<div style="margin-bottom:9px"><span class="mono k">Email</span>' +
+        '<span class="v"><a href="mailto:' + encodeURIComponent(l.email) + '">' + esc(l.email) + '</a></span></div>' +
+        field('Phone', l.phone);
+
+      var mid = field('Audience', l.audience) +
+        field('Plan', l.plan) +
+        field('Languages', l.languages) +
+        field('Message', l.message, true) +
+        (l.has_photo
+          ? '<span class="mono k">Photograph</span>' +
+            '<div class="shot" data-shot="' + l.id + '"><span class="mono">Loading…</span></div>' +
+            '<div class="mono" style="margin-top:6px">' + Math.round((l.photo_bytes || 0) / 1024) + ' KB</div>'
+          : '');
+
+      var right = '<span class="mono k">Status</span>' +
+        '<select data-id="' + l.id + '" class="st">' +
+        STATUSES.map(function (s) {
+          return '<option value="' + s + '"' + (s === l.status ? ' selected' : '') + '>' + s + '</option>';
+        }).join('') + '</select>' +
+        '<div class="note"><textarea data-id="' + l.id + '" class="nt" placeholder="Notes">' +
+        esc(l.notes || '') + '</textarea>' +
+        '<button data-save="' + l.id + '" class="ghost">Save</button></div>';
+
+      return '<div class="row"><div>' + left + '</div><div>' + mid + '</div><div>' + right + '</div></div>';
+    }).join('');
+
+    shots();
+  }
+
+  // The store is private, so a photograph cannot be an <img src>: the request
+  // needs the admin token, and a token does not belong in a URL. Each one is
+  // fetched with the header, turned into a blob URL that only this tab can
+  // resolve, and released when the list is rebuilt.
+  var blobUrls = [];
+  function shots() {
+    blobUrls.forEach(function (u) { URL.revokeObjectURL(u); });
+    blobUrls = [];
+
+    Array.prototype.forEach.call(document.querySelectorAll('[data-shot]'), function (box) {
+      var id = box.getAttribute('data-shot');
+      fetch('/api/photo-view?id=' + encodeURIComponent(id), {
+        headers: { Authorization: 'Bearer ' + token }
+      }).then(function (r) {
+        if (r.status === 401) { lock('That token was not accepted.'); throw new Error('401'); }
+        if (!r.ok) throw new Error('Could not load the photograph.');
+        return r.blob();
+      }).then(function (b) {
+        var url = URL.createObjectURL(b);
+        blobUrls.push(url);
+        box.innerHTML = '';
+        var img = document.createElement('img');
+        img.className = 'thumb';
+        img.alt = 'Submitted photograph';
+        img.src = url;
+        img.title = 'Open full size';
+        img.style.cursor = 'zoom-in';
+        img.onclick = function () { window.open(url, '_blank', 'noopener'); };
+        box.appendChild(img);
+      }).catch(function (e) {
+        if (e && e.message === '401') return;
+        box.innerHTML = '<span class="mono">Could not load it.</span>';
+      });
+    });
+  }
+
+  function load() {
+    banner('', '');
+    return api('GET').then(function (j) {
+      leads = j.leads || [];
+      render();
+    }).catch(function (e) {
+      if (/401|not authorised/i.test(e.message)) return lock('That token was not accepted.');
+      banner('err', e.message);
+    });
+  }
+
+  function lock(why) {
+    token = '';
+    sessionStorage.removeItem('ar_admin');
+    $('app').style.display = 'none';
+    $('gate').style.display = '';
+    if (why) { $('gateErr').textContent = why; $('gateErr').style.display = ''; }
+  }
+
+  function open() {
+    $('gate').style.display = 'none';
+    $('app').style.display = '';
+    load();
+  }
+
+  // --- events ---------------------------------------------------------------
+
+  $('go').addEventListener('click', function () {
+    var v = $('tok').value.trim();
+    if (!v) return;
+    token = v;
+    sessionStorage.setItem('ar_admin', v);
+    $('tok').value = '';
+    $('gateErr').style.display = 'none';
+    open();
+  });
+  $('tok').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('go').click(); });
+  $('refresh').addEventListener('click', load);
+  $('out').addEventListener('click', function () { lock(''); });
+
+  $('filters').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-f]');
+    if (!b) return;
+    filter = b.getAttribute('data-f');
+    render();
+  });
+
+  $('list').addEventListener('change', function (e) {
+    var sel = e.target.closest('select.st');
+    if (!sel) return;
+    var id = parseInt(sel.getAttribute('data-id'), 10);
+    api('PATCH', { id: id, status: sel.value }).then(function () {
+      var l = leads.filter(function (x) { return x.id === id; })[0];
+      if (l) l.status = sel.value;
+      render();
+      banner('ok', 'Saved.');
+    }).catch(function (err) { banner('err', err.message); });
+  });
+
+  $('list').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-save]');
+    if (!b) return;
+    var id = parseInt(b.getAttribute('data-save'), 10);
+    var ta = $('list').querySelector('textarea.nt[data-id="' + id + '"]');
+    if (!ta) return;
+    b.disabled = true;
+    api('PATCH', { id: id, notes: ta.value }).then(function () {
+      var l = leads.filter(function (x) { return x.id === id; })[0];
+      if (l) l.notes = ta.value;
+      banner('ok', 'Note saved.');
+    }).catch(function (err) {
+      banner('err', err.message);
+    }).then(function () { b.disabled = false; });
+  });
+
+  if (token) open();
+})();
+</script>
+</body>
+</html>

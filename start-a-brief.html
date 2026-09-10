@@ -106,6 +106,7 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px soli
         </sc-if>
 
         <!-- FOOT -->
+        <input onInput="{{ setCompany }}" tabindex="-1" autoComplete="off" aria-hidden="true" placeholder="Company" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0">
         <div style="margin-top:clamp(26px,3.4vw,44px);padding-top:18px;border-top:1px solid rgba(20,20,20,.12);display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:space-between">
           <button onClick="{{ back }}" style="display:{{ backShow }};background:none;border:0;border-bottom:1px solid #141414;padding:0 0 4px;cursor:pointer;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.13em;text-transform:uppercase">Back</button>
           <div style="display:flex;align-items:center;gap:18px;margin-left:auto">
@@ -113,6 +114,7 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px soli
             <button onClick="{{ next }}" disabled="{{ nextDisabled }}" style="background:{{ nextBg }};color:{{ nextFg }};text-shadow:{{ nextTextShadow }};box-shadow:{{ nextShadow }};border:0;border-radius:7px;padding:15px 28px;cursor:{{ nextCursor }};font:600 14px/1 'Plus Jakarta Sans',sans-serif;opacity:{{ nextOpacity }};transition:opacity 350ms">{{ nextLabel }}</button>
           </div>
         </div>
+        <p style="display:{{ errShow }};margin:12px 0 0;text-align:right;font:400 13px/1.6 'Plus Jakarta Sans',sans-serif;color:#A33B23">{{ err }}</p>
       </div>
     </sc-if>
 
@@ -151,7 +153,7 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px soli
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#8C6B3A&quot;,&quot;options&quot;:[&quot;#8C6B3A&quot;,&quot;#3F5C4A&quot;,&quot;#141414&quot;,&quot;#C2542A&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Palette&quot;}}">
 class Component extends DCLogic {
   state = {
-    wide: true, cols: 3, step: 0, sent: false, skipAudience: false,
+    wide: true, cols: 3, step: 0, sent: false, busy: false, err: '', skipAudience: false,
     audience: '', tier: '',
     property: '', city: '', website: '',
     photos: '', shotBy: '',
@@ -235,12 +237,54 @@ class Component extends DCLogic {
     return true;
   }
 
+  // Everything the four steps collect that the leads table has no column for
+  // is folded into the message, so nothing the person typed is thrown away.
+  extras(s) {
+    return [
+      s.city ? 'City: ' + s.city : '',
+      s.website ? 'Website: ' + s.website : '',
+      s.photos ? 'Photography: ' + s.photos : '',
+      s.shotBy ? 'Shot by: ' + s.shotBy : '',
+      s.role ? 'Role: ' + s.role : ''
+    ].filter(Boolean).join('\n');
+  }
+
+  async submit() {
+    if (this.state.busy) return;
+    const s = this.state;
+    this.setState(() => ({ busy: true, err: '' }));
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          property: s.property,
+          name: s.name,
+          email: s.email,
+          phone: s.phone,
+          audience: (this.audienceData.find(d => d[0] === s.audience) || [null, ''])[1],
+          plan: this.tierName(s.tier),
+          languages: s.langs,
+          message: this.extras(s),
+          currency: window.AR_MONEY ? window.AR_MONEY.cur() : '',
+          company: this.hp || ''
+        })
+      });
+      let body = {};
+      try { body = await res.json(); } catch (e) {}
+      if (!res.ok) throw new Error(body.error || 'We could not send that brief. Please try again in a moment.');
+      this.setState(() => ({ sent: true, busy: false }));
+      if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (e) {
+      this.setState(() => ({ busy: false, err: (e && e.message) || 'Something went wrong. Please try again.' }));
+    }
+  }
+
   next() {
-    this.setState(s => {
-      if (!this.complete(s)) return null;
-      if (s.step >= this.steps.length - 1) return { sent: true };
-      return { step: s.step + 1 };
-    });
+    const s = this.state;
+    if (!this.complete(s)) return;
+    if (s.step >= this.steps.length - 1) { this.submit(); return; }
+    this.setState(() => ({ step: s.step + 1 }));
     if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   back() { this.setState(s => ({ step: Math.max(s.skipAudience ? 1 : 0, s.step - 1) })); }
@@ -332,9 +376,12 @@ class Component extends DCLogic {
       backShow: s.step > (s.skipAudience ? 1 : 0) ? 'inline' : 'none',
       back: () => this.back(),
       next: () => this.next(),
-      nextLabel: last ? 'Send the brief' : 'Next',
-      nextDisabled: !ok,
-      nextCursor: ok ? 'pointer' : 'not-allowed',
+      nextLabel: last ? (s.busy ? 'Sending the brief…' : 'Send the brief') : 'Next',
+      nextDisabled: !ok || s.busy,
+      nextCursor: (ok && !s.busy) ? 'pointer' : 'not-allowed',
+      err: s.err,
+      errShow: s.err ? 'block' : 'none',
+      setCompany: (e) => { this.hp = e.target.value; },
       nextOpacity: ok ? '1' : '.45',
       nextBg: ok ? this.gold : '#E8E6E1',
       nextFg: ok ? '#191306' : '#8A8A84',

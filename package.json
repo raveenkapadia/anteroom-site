@@ -1,0 +1,9 @@
+{
+  "name": "anteroom-site",
+  "private": true,
+  "description": "ANTEROOM marketing site. The pages are static; only the /api functions have dependencies.",
+  "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
+    "@vercel/blob": "^2.8.0"
+  }
+}
