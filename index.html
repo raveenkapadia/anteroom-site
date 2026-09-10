@@ -176,33 +176,44 @@ image-slot{display:block}
 </section>
 
 <!-- PROCESS -->
-<section id="process" style="background:#101B2B;color:#F1F3F7;padding:clamp(32px,4.4vw,70px) 0;margin-bottom:clamp(32px,4.4vw,70px)">
+<section id="process" style="background:#101B2B;color:#F1F3F7;padding:clamp(24px,3.2vw,50px) 0;margin-bottom:clamp(24px,3.2vw,50px)">
   <div style="max-width:1560px;margin:0 auto;padding:0 clamp(16px,3vw,40px);display:flex;flex-direction:column;align-items:center;text-align:center">
     <div style="display:flex;align-items:center;gap:12px;font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.2em;text-transform:uppercase;color:#96A0B4">
       <span style="width:22px;height:3px;border-radius:2px;background:{{ ruleBg }};box-shadow:{{ ruleShadow }};display:block"></span>How it is made
     </div>
-    <h2 style="margin:18px 0 0;white-space:nowrap;font-weight:500;font-size:clamp(20px,3.55vw,42px);line-height:1.1;letter-spacing:-0.028em;color:#FFFFFF">Eleven stages. No render button.</h2>
-    <p style="margin:clamp(13px,1.6vw,18px) 0 0;white-space:nowrap;font:400 clamp(13px,1.55vw,17px)/1.5 'Plus Jakarta Sans',sans-serif;color:#C8CEDA">A script, a look, a grade, a language.</p>
+    <h2 style="margin:14px 0 0;max-width:20ch;text-wrap:balance;font-weight:500;font-size:clamp(20px,3.55vw,42px);line-height:1.1;letter-spacing:-0.028em;color:#FFFFFF">Eight stages. Ten days. No render button.</h2>
+    <p style="margin:clamp(10px,1.2vw,14px) 0 0;white-space:nowrap;font:400 clamp(13px,1.55vw,17px)/1.5 'Plus Jakarta Sans',sans-serif;color:#C8CEDA">A script, a look, a grade, a language.</p>
   </div>
 
-  <div class="hs" style="margin-top:clamp(24px,3.4vw,44px);display:flex;gap:0;overflow-x:auto;padding:0 clamp(16px,3vw,40px) 20px;scroll-padding-left:clamp(16px,3vw,40px);scroll-snap-type:x proximity">
-    <sc-for list="{{ process }}" as="p" hint-placeholder-count="11">
-      <div style="flex:0 0 clamp(190px,20vw,264px);scroll-snap-align:start;padding-right:clamp(13px,1.6vw,22px)">
-        <div style="height:3px;border-radius:2px;background:{{ p.ruleNavy }};box-shadow:{{ p.ruleShadowNavy }};margin-bottom:14px"></div>
-        <div style="display:flex;align-items:baseline;gap:9px">
+  <div style="max-width:1560px;margin:clamp(16px,2vw,26px) auto 0;padding:0 clamp(16px,3vw,40px)">
+    <div style="display:flex;align-items:center;gap:2px">
+      <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="5">
+        <div style="flex:{{ t.span }};height:4px;border-radius:{{ t.radius }};background:{{ t.fill }}"></div>
+      </sc-for>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:6px;font:400 9px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.12em;text-transform:uppercase;color:#7E8899">
+      <span>Day 1</span><span>Day 10</span>
+    </div>
+  </div>
+
+  <div class="hs" style="margin-top:clamp(14px,1.8vw,24px);display:flex;gap:0;overflow-x:auto;padding:0 clamp(16px,3vw,40px) 14px;scroll-padding-left:clamp(16px,3vw,40px);scroll-snap-type:x proximity">
+    <sc-for list="{{ process }}" as="p" hint-placeholder-count="8">
+      <div style="flex:0 0 clamp(172px,17.5vw,222px);scroll-snap-align:start;padding-right:clamp(12px,1.4vw,20px)">
+        <div style="height:3px;border-radius:2px;background:{{ p.ruleNavy }};box-shadow:{{ p.ruleShadowNavy }};margin-bottom:12px"></div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="flex:0 0 auto;width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;border:1px solid {{ p.iconBorder }};background:{{ p.iconBg }}">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="{{ p.iconTone }}" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="{{ p.icon }}"></path></svg>
+          </span>
           <span style="font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.12em;color:{{ p.toneNavy }}">{{ p.n }}</span>
-          <span style="font:600 15px/1.22 'Plus Jakarta Sans',sans-serif;letter-spacing:-0.016em;color:#FFFFFF">{{ p.name }}</span>
         </div>
-        <p style="margin:9px 0 0;min-height:59px;font:400 13px/1.5 'Plus Jakarta Sans',sans-serif;color:#C8CEDA;max-width:26ch">{{ p.note }}</p>
-        <div style="margin-top:14px;position:relative;aspect-ratio:4/3;overflow:hidden;background:#0C1420">
-          <image-slot id="{{ p.slot }}" shape="rect" fit="cover" src="{{ p.img }}" placeholder="{{ p.name }}" style="width:100%;height:100%"></image-slot>
-          <div style="position:absolute;inset:0;pointer-events:none;background:{{ p.veil }}"></div>
-          <div style="position:absolute;left:9px;bottom:8px;pointer-events:none;font:400 9px/1.5 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,.9)">{{ p.who }}</div>
-        </div>
+        <div style="margin-top:10px;font:600 15px/1.22 'Plus Jakarta Sans',sans-serif;letter-spacing:-0.016em;color:#FFFFFF">{{ p.name }}</div>
+        <p style="margin:7px 0 0;min-height:57px;font:400 12.5px/1.5 'Plus Jakarta Sans',sans-serif;color:#C8CEDA;max-width:26ch">{{ p.note }}</p>
+        <div style="font:500 9px/1.5 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#C4A46E">{{ p.days }}</div>
+        <div style="font:400 9px/1.5 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#7E8899">{{ p.who }}</div>
       </div>
     </sc-for>
   </div>
-  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(16px,3vw,40px);text-align:center;font:400 10px/1.8 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#96A0B4">Scroll → · Ten to fourteen working days</div>
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(16px,3vw,40px);text-align:center;font:400 10px/1.8 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#96A0B4">Scroll → · One film, seven to ten working days</div>
 </section>
 
 <!-- SCENES: SUPPLIED → FINISHED -->
@@ -366,17 +377,39 @@ class Component extends DCLogic {
   ];
 
   processData = [
-    ['01','Audience & goal','Who we are selling to, and the result it has to deliver.','Producer',1],
-    ['02','Concept & story','One idea, written down before anything is made.','Creative director',3],
-    ['03','Script','Scene by scene, with timings. You approve it.','Writer',4],
-    ['04','Casting','People chosen for this audience — age, dress, how they speak.','Creative director',2],
-    ['05','Scene creation','Each scene built from your own photography.','Producer',1],
-    ['06','One look','One camera style, one set of colours, one light. Nothing changes between scenes.','Creative director',6],
-    ['07','Music','Music written for where it runs. A trade stand and a phone feed need different sound.','Editor',3],
-    ['08','Editing','Cut for rhythm, then coloured to match the guide.','Editor',8],
-    ['09','Other languages','New voice, new on-screen text. Not subtitles.','Producer',4],
-    ['10','Quality review','We check every claim, and note what each scene was made from.','Producer',5],
-    ['11','Delivery','Four finished files, a list of sizes, and full rights to use them.','Producer',7]
+    ['01','Audience & goal','Who we are selling to, and the result it has to deliver.','Producer','Day 1'],
+    ['02','Concept & script','One idea, written scene by scene. Two rounds of changes included.','Writer','Days 2–3'],
+    ['03','Casting','People chosen for this audience — age, dress, how they speak.','Creative director','Day 3'],
+    ['04','Scene creation','Each scene built from your own photography.','Producer','Days 4–6'],
+    ['05','One look','One camera style, one set of colours, one light, across every scene.','Creative director','Day 6'],
+    ['06','Sound & edit','Music written for where it runs, then cut for rhythm and coloured to match.','Editor','Days 7–8'],
+    ['07','Other languages','New voice, new on-screen text. Not subtitles.','Producer','+3 days each'],
+    ['08','Review & delivery','Every claim checked. Four files, a list of sizes, full rights to use them.','Producer','Days 9–10']
+  ];
+
+  // The bar above the cards. Five blocks, weighted by how long each phase runs,
+  // fading out as the work moves from decisions to delivery.
+  timelineData = [
+    [1, '#C4A46E', '2px 0 0 2px'],
+    [2, 'rgba(196,164,110,.72)', '0'],
+    [3, 'rgba(196,164,110,.52)', '0'],
+    [2, 'rgba(196,164,110,.36)', '0'],
+    [2, 'rgba(196,164,110,.22)', '0 2px 2px 0']
+  ];
+
+  // One SVG path per stage, drawn on a 24x24 grid, stroked not filled. A single
+  // path each is what lets the template interpolate the icon as an attribute.
+  // Each one draws the artefact that stage produces, not a generic symbol:
+  // the target the brief aims at, the script page, the casting card, and so on.
+  stageIcons = [
+    'M20.6 11.05a8.75 8.75 0 1 1-6.9-7.5M16.2 11.6a4.25 4.25 0 1 1-3.15-3.95M12 12l6.7-6.7M15.85 5.3h2.85v2.85',
+    'M6.5 2.75h7.25l3.75 3.75v14.75H6.5zM13.75 2.75V6.5h3.75M10 10.75h4M10 13.75h4M10 16.75h2.25',
+    'M4.75 3.75h14.5v16.5H4.75zM12 11.4a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2M7.9 17.5a4.35 4.35 0 0 1 8.2 0',
+    'M3.75 4.75h16.5v14.5H3.75zM3.75 15.1l4.6-4.6 3 3 4-4 4.9 4.9',
+    'M12 3.25c3.1 3.65 5.25 6.55 5.25 9.2a5.25 5.25 0 0 1-10.5 0c0-2.65 2.15-5.55 5.25-9.2M9.75 13.6a2.25 2.25 0 0 0 2.25 2.25',
+    'M4 10.25v3.5M8 7v10M12 4.5v15M16 8.25v7.5M20 10.75v2.5',
+    'M12 2.75a9.25 9.25 0 1 0 0 18.5 9.25 9.25 0 0 0 0-18.5M2.9 12h18.2M12 2.75c2.4 2.7 3.6 5.8 3.6 9.25s-1.2 6.55-3.6 9.25c-2.4-2.7-3.6-5.8-3.6-9.25s1.2-6.55 3.6-9.25',
+    'M9 3.5h6v2.75H9zM9 4.9H6.75v15.6h10.5V4.9H15M9.4 12.9l2.05 2.05 3.6-3.85'
   ];
 
   formatData = [
@@ -537,18 +570,21 @@ class Component extends DCLogic {
       split: s.split, splitPct: s.split + '%', splitInverse: (10000 / s.split) + '%',
       setSplit: (e) => { const v = Number(e.target.value); this.setState(() => ({ split: v })); },
 
+      timeline: this.timelineData.map(t => ({ span: String(t[0]), fill: t[1], radius: t[2] })),
+
       process: this.processData.map((d, i) => ({
-        n: d[0], name: d[1], note: d[2], who: d[3].toUpperCase(),
-        img: '/video/scene-' + d[4] + '.jpg',
-        slot: 'v2-proc-' + d[0],
+        n: d[0], name: d[1], note: d[2], who: d[3].toUpperCase(), days: d[4],
+        icon: this.stageIcons[i] || this.stageIcons[0],
+        iconTone: i === 0 ? '#DCC08C' : '#C4A46E',
+        iconBorder: i === 0 ? 'rgba(216,188,133,.46)' : 'rgba(196,164,110,.24)',
+        iconBg: i === 0 ? 'rgba(196,164,110,.15)' : 'rgba(196,164,110,.07)',
         rule: i === 0 ? accent : 'rgba(20,20,20,.14)',
         tone: i === 0 ? accent : '#5E5E58',
         ruleNavy: i === 0 ? this.metalRule(accent, true) : 'linear-gradient(180deg,rgba(241,243,247,.34),rgba(241,243,247,.16))',
         ruleShadowNavy: i === 0
           ? 'inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(20,12,2,.5),0 1px 2px rgba(4,10,20,.5)'
           : 'inset 0 1px 0 rgba(255,255,255,.22),0 1px 1px rgba(4,10,20,.4)',
-        toneNavy: i === 0 ? '#C4A46E' : '#96A0B4',
-        veil: 'linear-gradient(180deg,rgba(9,16,28,.1),rgba(9,16,28,.55))'
+        toneNavy: i === 0 ? '#C4A46E' : '#96A0B4'
       })),
 
       shot: {
