@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="/support.js"></script>
+<script src="/money.js"></script>
 </head>
 <body>
 <x-dc>
@@ -308,41 +309,11 @@ image-slot{display:block}
 class Component extends DCLogic {
   state = { wide: true, menuOpen: false, cur: 'USD', place: '', open: 0 };
 
-  // timezone → [currency, city label]. Resolved once, on load.
-  zoneMap = {
-    'Asia/Dubai': ['AED', 'Dubai'], 'Asia/Muscat': ['AED', 'Muscat'],
-    'Asia/Riyadh': ['SAR', 'Riyadh'], 'Asia/Jeddah': ['SAR', 'Jeddah'], 'Asia/Bahrain': ['SAR', 'Manama'],
-    'Asia/Qatar': ['SAR', 'Doha'], 'Asia/Kuwait': ['SAR', 'Kuwait City'],
-    'Europe/London': ['GBP', 'London'], 'Europe/Dublin': ['EUR', 'Dublin'],
-    'Europe/Paris': ['EUR', 'Paris'], 'Europe/Berlin': ['EUR', 'Berlin'], 'Europe/Madrid': ['EUR', 'Madrid'],
-    'Europe/Rome': ['EUR', 'Rome'], 'Europe/Amsterdam': ['EUR', 'Amsterdam'], 'Europe/Lisbon': ['EUR', 'Lisbon'],
-    'Europe/Vienna': ['EUR', 'Vienna'], 'Europe/Brussels': ['EUR', 'Brussels'], 'Europe/Athens': ['EUR', 'Athens'],
-    'Europe/Zurich': ['CHF', 'Zurich'], 'Europe/Geneva': ['CHF', 'Geneva'],
-    'Asia/Kolkata': ['INR', 'Mumbai'], 'Asia/Calcutta': ['INR', 'Mumbai'],
-    'Europe/Moscow': ['RUB', 'Moscow'], 'Asia/Singapore': ['SGD', 'Singapore'],
-    'Australia/Sydney': ['AUD', 'Sydney'], 'Australia/Melbourne': ['AUD', 'Melbourne'],
-    'America/Toronto': ['CAD', 'Toronto'], 'America/Vancouver': ['CAD', 'Vancouver'],
-    'America/New_York': ['USD', 'New York'], 'America/Chicago': ['USD', 'Chicago'],
-    'America/Los_Angeles': ['USD', 'Los Angeles']
-  };
-  regionMap = { AE: ['AED', 'the UAE'], SA: ['SAR', 'Saudi Arabia'], GB: ['GBP', 'the UK'], IN: ['INR', 'India'], RU: ['RUB', 'Russia'], CH: ['CHF', 'Switzerland'], AU: ['AUD', 'Australia'], CA: ['CAD', 'Canada'], SG: ['SGD', 'Singapore'], DE: ['EUR', 'Germany'], FR: ['EUR', 'France'], ES: ['EUR', 'Spain'], IT: ['EUR', 'Italy'], NL: ['EUR', 'the Netherlands'], PT: ['EUR', 'Portugal'], AT: ['EUR', 'Austria'], BE: ['EUR', 'Belgium'], IE: ['EUR', 'Ireland'], GR: ['EUR', 'Greece'] };
-
+  // Currency, rates and rounding all live in /money.js, shared with every
+  // other page. Detection there is IP first (via /api/geo), timezone as fallback.
   detect() {
-    try {
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      if (tz && this.zoneMap[tz]) return this.zoneMap[tz];
-      const loc = (navigator.languages && navigator.languages[0]) || navigator.language || '';
-      const reg = loc.split('-')[1];
-      if (reg && this.regionMap[reg.toUpperCase()]) return this.regionMap[reg.toUpperCase()];
-      if (tz) {
-        const city = tz.split('/').pop().replace(/_/g, ' ');
-        return ['USD', city];
-      }
-    } catch (e) {}
-    return ['USD', ''];
+    return window.AR_MONEY ? [window.AR_MONEY.cur(), window.AR_MONEY.place()] : ['USD', ''];
   }
-
-  rates = { USD: [1, '$', 0], AED: [3.6725, 'AED ', 0], SAR: [3.75, 'SAR ', 0], EUR: [0.92, '€', 0], GBP: [0.79, '£', 0], INR: [87.4, '₹', 0], CHF: [0.8, 'CHF ', 0], AUD: [1.52, 'A$', 0], CAD: [1.37, 'C$', 0], SGD: [1.29, 'S$', 0] };
 
   tierData = [
     ['One film', 750, 'Ready in 7–10 days', 'Try us out', 1, 'pr-t1',
@@ -398,8 +369,12 @@ class Component extends DCLogic {
     });
     window.addEventListener('resize', this.onResize);
     this.onResize();
-    const d = this.detect();
-    if (this.rates[d[0]]) this.setState(() => ({ cur: d[0], place: d[1] }));
+    const applyFx = () => {
+      const d = this.detect();
+      this.setState(() => ({ cur: d[0], place: d[1] }));
+    };
+    applyFx();
+    if (window.AR_MONEY) window.AR_MONEY.ready(applyFx);
   }
   componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
 
@@ -412,15 +387,7 @@ class Component extends DCLogic {
     return 'rgb(' + r + ',' + g + ',' + b + ')';
   }
 
-  // round to nearest 100 only when that moves the price under 3%; else nearest 10
-  fmt(usd) {
-    const c = this.state.cur, r = this.rates[c];
-    if (c === 'USD') return r[1] + usd.toLocaleString('en-US');
-    const raw = usd * r[0];
-    const h = Math.round(raw / 100) * 100;
-    const v = (h > 0 && Math.abs(h - raw) / raw < 0.03) ? h : Math.round(raw / 10) * 10;
-    return r[1] + v.toLocaleString('en-US');
-  }
+  fmt(usd) { return window.AR_MONEY ? window.AR_MONEY.fmt(usd) : '$' + usd.toLocaleString('en-US'); }
 
   goBrief(tier) {
     window.location.href = '/start-a-brief' + (tier ? '?tier=' + tier : '');
@@ -470,9 +437,7 @@ class Component extends DCLogic {
       locTag: s.place ? s.place + ' · ' + s.cur : s.cur,
       locLong: s.place ? s.place + ', in ' + s.cur : s.cur,
       locLine: s.place ? 'Shown for ' + s.place + ' in ' + s.cur : 'Shown in ' + s.cur,
-      fxNote: s.cur === 'USD'
-        ? 'Prices in USD. UAE customers: 5% VAT is added at invoice.'
-        : 'Shown in ' + s.cur + ' for ' + (s.place || 'your region') + ', converted from USD at today’s rate and rounded. Invoiced in USD unless otherwise agreed. UAE customers: 5% VAT is added at invoice.',
+      fxNote: window.AR_MONEY ? window.AR_MONEY.note() : 'Prices in USD. UAE customers: 5% VAT is added at invoice.',
 
       cols: s.wide ? 'repeat(3,minmax(0,1fr))' : 'minmax(0,1fr)',
       diffCols: s.wide ? 'minmax(0,1.6fr) repeat(3,minmax(0,1fr))' : 'minmax(0,1fr)',
