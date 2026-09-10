@@ -7,12 +7,13 @@
 <title>ANTEROOM — Leads</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
+[style*="Jost"]{font-variant-numeric:tabular-nums}
 html,body{margin:0;padding:0;background:#FFFFFF;color:#141414;-webkit-font-smoothing:antialiased;
   font:400 15px/1.6 'Plus Jakarta Sans',system-ui,sans-serif}
-.mono{font:400 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58}
+.meta{font:400 10px/1.7 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58}
 header{border-bottom:1px solid rgba(20,20,20,.1);padding:22px clamp(16px,3vw,40px);
   display:flex;align-items:center;gap:18px;flex-wrap:wrap;position:sticky;top:0;background:#fff;z-index:5}
 .brand{font-weight:700;letter-spacing:0.12em;font-size:14px}
@@ -32,7 +33,7 @@ textarea{resize:vertical;min-height:64px}
 .k{display:block;margin-bottom:2px}
 .v{font-size:14px;word-break:break-word}
 .v.dim{color:#5E5E58}
-.pill{display:inline-block;padding:4px 10px;border-radius:999px;font:500 10px/1.6 'IBM Plex Mono',monospace;
+.pill{display:inline-block;padding:4px 10px;border-radius:999px;font:500 10px/1.6 'Jost',sans-serif;
   letter-spacing:0.12em;text-transform:uppercase}
 .s-new{background:#F1DA9A;color:#191306}
 .s-contacted{background:#E4E9F2;color:#101B2B}
@@ -60,7 +61,7 @@ a{color:#141414}
 <body>
 
 <div id="gate" class="gate">
-  <p class="mono">ANTEROOM · LEADS</p>
+  <p class="meta">ANTEROOM · LEADS</p>
   <h1 style="font-size:30px;line-height:1.15;letter-spacing:-0.03em;margin:8px 0 10px">Access token</h1>
   <p>Paste the value of <code>ADMIN_TOKEN</code>. It is kept for this tab only and never written to disk.</p>
   <div id="gateErr" class="msg err" style="display:none"></div>
@@ -71,8 +72,8 @@ a{color:#141414}
 <div id="app" style="display:none">
   <header>
     <span class="brand">ANTEROOM</span>
-    <span class="mono">Leads</span>
-    <span id="count" class="mono" style="margin-left:auto"></span>
+    <span class="meta">Leads</span>
+    <span id="count" class="meta" style="margin-left:auto"></span>
     <button id="refresh" class="ghost">Refresh</button>
     <button id="out" class="ghost">Lock</button>
   </header>
@@ -134,7 +135,7 @@ a{color:#141414}
 
   function field(label, value, dim) {
     if (!value) return '';
-    return '<div style="margin-bottom:9px"><span class="mono k">' + esc(label) + '</span>' +
+    return '<div style="margin-bottom:9px"><span class="meta k">' + esc(label) + '</span>' +
            '<span class="v' + (dim ? ' dim' : '') + '">' + esc(value) + '</span></div>';
   }
 
@@ -159,13 +160,13 @@ a{color:#141414}
       var who = '<div style="margin-bottom:12px">' +
         '<span class="pill k-' + esc(l.kind) + '">' + esc(l.kind) + '</span> ' +
         '<span class="pill s-' + esc(l.status) + '">' + esc(l.status) + '</span>' +
-        '<div class="mono" style="margin-top:8px">#' + l.id + ' · ' + esc(when(l.created_at)) +
+        '<div class="meta" style="margin-top:8px">#' + l.id + ' · ' + esc(when(l.created_at)) +
         (l.source_country ? ' · ' + esc(l.source_country) : '') + '</div></div>';
 
       var left = who +
         field('Property', l.property) +
         field('Name', l.contact_name) +
-        '<div style="margin-bottom:9px"><span class="mono k">Email</span>' +
+        '<div style="margin-bottom:9px"><span class="meta k">Email</span>' +
         '<span class="v"><a href="mailto:' + encodeURIComponent(l.email) + '">' + esc(l.email) + '</a></span></div>' +
         field('Phone', l.phone);
 
@@ -174,12 +175,12 @@ a{color:#141414}
         field('Languages', l.languages) +
         field('Message', l.message, true) +
         (l.has_photo
-          ? '<span class="mono k">Photograph</span>' +
-            '<div class="shot" data-shot="' + l.id + '"><span class="mono">Loading…</span></div>' +
-            '<div class="mono" style="margin-top:6px">' + Math.round((l.photo_bytes || 0) / 1024) + ' KB</div>'
+          ? '<span class="meta k">Photograph</span>' +
+            '<div class="shot" data-shot="' + l.id + '"><span class="meta">Loading…</span></div>' +
+            '<div class="meta" style="margin-top:6px">' + Math.round((l.photo_bytes || 0) / 1024) + ' KB</div>'
           : '');
 
-      var right = '<span class="mono k">Status</span>' +
+      var right = '<span class="meta k">Status</span>' +
         '<select data-id="' + l.id + '" class="st">' +
         STATUSES.map(function (s) {
           return '<option value="' + s + '"' + (s === l.status ? ' selected' : '') + '>' + s + '</option>';
@@ -225,7 +226,7 @@ a{color:#141414}
         box.appendChild(img);
       }).catch(function (e) {
         if (e && e.message === '401') return;
-        box.innerHTML = '<span class="mono">Could not load it.</span>';
+        box.innerHTML = '<span class="meta">Could not load it.</span>';
       });
     });
   }

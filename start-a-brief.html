@@ -13,10 +13,11 @@
 <title>ANTEROOM — Start a brief</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="/image-slot.js"></script>
 <style>
 *{box-sizing:border-box}
+[style*="Jost"]{font-variant-numeric:tabular-nums}
 html,body{margin:0;padding:0;background:#FFFFFF;-webkit-font-smoothing:antialiased}
 a{color:#141414;text-decoration:none;border-bottom:1px solid rgba(20,20,20,.28)}
 a:hover{border-bottom-color:#141414}
@@ -37,13 +38,13 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px soli
 <div style="position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(20,20,20,.08)">
   <div style="max-width:1560px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 clamp(16px,3vw,40px);height:62px">
     <div style="display:flex;align-items:baseline;gap:14px;flex:0 0 auto">
-      <a href="/" style="font:600 13px/1 'IBM Plex Mono',monospace;letter-spacing:0.22em;border:0">ANTEROOM</a>
-      <span style="display:{{ navDisplay }};font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Start a brief</span>
+      <a href="/" style="font:600 13px/1 'Jost',sans-serif;letter-spacing:0.22em;border:0">ANTEROOM</a>
+      <span style="display:{{ navDisplay }};font:400 10px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Start a brief</span>
     </div>
-    <span style="font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">{{ stepLabel }}</span>
+    <span style="font:400 10px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">{{ stepLabel }}</span>
     <div style="display:flex;align-items:center;gap:12px;flex:0 0 auto">
-      <span style="display:{{ navDisplay }};font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">No account needed</span>
-      <a href="/send-one-photograph" style="border:0;border-bottom:1px solid #141414;padding:0 0 4px;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.13em;text-transform:uppercase;white-space:nowrap">Just send a photo</a>
+      <span style="display:{{ navDisplay }};font:400 10px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">No account needed</span>
+      <a href="/send-one-photograph" style="border:0;border-bottom:1px solid #141414;padding:0 0 4px;font:500 11px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap">Just send a photo</a>
     </div>
   </div>
   <div style="height:3px;background:rgba(20,20,20,.08)">
@@ -56,14 +57,14 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px soli
 
     <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
       <div style="animation:fade 400ms ease both">
-        <div style="display:flex;align-items:center;gap:12px;font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.2em;text-transform:uppercase;color:#5E5E58">
+        <div style="display:flex;align-items:center;gap:12px;font:500 10px/1 'Jost',sans-serif;letter-spacing:0.2em;text-transform:uppercase;color:#5E5E58">
           <span style="width:22px;height:3px;border-radius:2px;background:{{ ruleBg }};box-shadow:{{ ruleShadow }};display:block"></span>{{ q.eyebrow }}
         </div>
         <sc-if value="{{ hasTier }}" hint-placeholder-val="{{ false }}">
           <div style="margin-top:14px;display:inline-flex;align-items:center;gap:12px;border:1px solid rgba(20,20,20,.16);border-radius:2px;padding:9px 14px">
-            <span style="font:400 9px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:#5E5E58">Plan</span>
+            <span style="font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Plan</span>
             <span style="font-weight:500;font-size:14px;line-height:1.3;letter-spacing:-0.016em;color:#141414">{{ tierName }}</span>
-            <button onClick="{{ clearTier }}" style="background:none;border:0;padding:0;cursor:pointer;font:400 9px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58;border-bottom:1px solid rgba(20,20,20,.28)">Change</button>
+            <button onClick="{{ clearTier }}" style="background:none;border:0;padding:0;cursor:pointer;font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58;border-bottom:1px solid rgba(20,20,20,.28)">Change</button>
           </div>
         </sc-if>
         <h1 style="margin:16px 0 0;font-weight:500;font-size:clamp(28px,4vw,54px);line-height:1.05;letter-spacing:-0.034em;text-wrap:pretty">{{ q.title }}</h1>
@@ -74,7 +75,7 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px soli
           <div style="margin-top:clamp(22px,3vw,38px);display:grid;grid-template-columns:{{ audCols }};gap:1px;background:rgba(20,20,20,.12);border:1px solid rgba(20,20,20,.12)">
             <sc-for list="{{ audiences }}" as="a" hint-placeholder-count="12">
               <button onClick="{{ a.pick }}" style="min-width:0;text-align:left;background:{{ a.bg }};border:0;padding:14px 16px;cursor:pointer;transition:background 300ms">
-                <span style="display:block;font:400 9px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:{{ a.n }}">{{ a.num }}</span>
+                <span style="display:block;font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:{{ a.n }}">{{ a.num }}</span>
                 <span style="display:block;margin-top:5px;font-weight:500;font-size:15px;line-height:1.25;letter-spacing:-0.018em;color:{{ a.fg }}">{{ a.name }}</span>
                 <span style="display:block;margin-top:4px;font:400 12.5px/1.4 'Plus Jakarta Sans',sans-serif;color:{{ a.sub }}">{{ a.goal }}</span>
               </button>
@@ -87,7 +88,7 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px soli
           <div style="margin-top:clamp(22px,3vw,38px);display:grid;grid-template-columns:{{ fieldCols }};gap:14px">
             <sc-for list="{{ fields }}" as="f" hint-placeholder-count="3">
               <label style="min-width:0;display:flex;flex-direction:column;gap:7px;grid-column:{{ f.span }}">
-                <span style="font:400 9px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:#5E5E58">{{ f.label }}</span>
+                <span style="font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">{{ f.label }}</span>
                 <input value="{{ f.value }}" onInput="{{ f.set }}" placeholder="{{ f.ph }}" style="width:100%;background:#FFFFFF;border:1px solid rgba(20,20,20,.2);border-radius:4px;padding:14px 16px;font:400 15px/1.4 'Plus Jakarta Sans',sans-serif">
               </label>
             </sc-for>
@@ -96,21 +97,21 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px soli
 
         <!-- LANGUAGES, inside step three -->
         <sc-if value="{{ isLang }}" hint-placeholder-val="{{ false }}">
-          <div style="margin-top:clamp(20px,2.6vw,32px);padding-top:16px;border-top:1px solid rgba(20,20,20,.12);font:400 9px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:#5E5E58">{{ langHeading }}</div>
+          <div style="margin-top:clamp(20px,2.6vw,32px);padding-top:16px;border-top:1px solid rgba(20,20,20,.12);font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">{{ langHeading }}</div>
           <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:9px">
             <sc-for list="{{ langs }}" as="l" hint-placeholder-count="11">
               <button onClick="{{ l.pick }}" style="background:{{ l.bg }};border:1px solid {{ l.border }};border-radius:999px;padding:11px 18px;cursor:pointer;font:500 14px/1 'Plus Jakarta Sans',sans-serif;color:{{ l.fg }};transition:background 300ms,border-color 300ms">{{ l.name }}</button>
             </sc-for>
           </div>
-          <p style="margin:14px 0 0;font:400 12px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.06em;color:#5E5E58">English is included. Each extra language is {{ langPrice }}.</p>
+          <p style="margin:14px 0 0;font:400 12px/1.6 'Jost',sans-serif;letter-spacing:0.06em;color:#5E5E58">English is included. Each extra language is {{ langPrice }}.</p>
         </sc-if>
 
         <!-- FOOT -->
         <input onInput="{{ setCompany }}" tabindex="-1" autoComplete="off" aria-hidden="true" placeholder="Company" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0">
         <div style="margin-top:clamp(26px,3.4vw,44px);padding-top:18px;border-top:1px solid rgba(20,20,20,.12);display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:space-between">
-          <button onClick="{{ back }}" style="display:{{ backShow }};background:none;border:0;border-bottom:1px solid #141414;padding:0 0 4px;cursor:pointer;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.13em;text-transform:uppercase">Back</button>
+          <button onClick="{{ back }}" style="display:{{ backShow }};background:none;border:0;border-bottom:1px solid #141414;padding:0 0 4px;cursor:pointer;font:500 11px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase">Back</button>
           <div style="display:flex;align-items:center;gap:18px;margin-left:auto">
-            <span style="font:400 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">{{ q.foot }}</span>
+            <span style="font:400 10px/1.7 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">{{ q.foot }}</span>
             <button onClick="{{ next }}" disabled="{{ nextDisabled }}" style="background:{{ nextBg }};color:{{ nextFg }};text-shadow:{{ nextTextShadow }};box-shadow:{{ nextShadow }};border:0;border-radius:7px;padding:15px 28px;cursor:{{ nextCursor }};font:600 14px/1 'Plus Jakarta Sans',sans-serif;opacity:{{ nextOpacity }};transition:opacity 350ms">{{ nextLabel }}</button>
           </div>
         </div>
@@ -127,7 +128,7 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px soli
           <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(20px,4vw,48px);pointer-events:none">
             <h1 style="margin:0;font-weight:500;font-size:clamp(26px,3.6vw,50px);line-height:1.05;letter-spacing:-0.034em;color:#FFFFFF">Brief received.</h1>
             <p style="margin:14px auto 0;max-width:52ch;font:400 clamp(14px,1.5vw,17px)/1.6 'Plus Jakarta Sans',sans-serif;color:rgba(244,243,239,.92);text-wrap:pretty">A producer will read it and reply within one working day. You will get either a direction for the script, or a question. A real reply from a person.</p>
-          <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:center;font:400 10px/1.8 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:rgba(244,243,239,.72)">
+          <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:center;font:400 10px/1.8 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:rgba(244,243,239,.72)">
             <span>Audience — {{ sentAudience }}</span>
             <span style="display:{{ sentTierShow }}">Plan — {{ tierName }}</span>
             <span>Languages — {{ sentLangs }}</span>
@@ -136,7 +137,7 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px soli
         </div>
         <div style="margin-top:clamp(20px,2.6vw,34px);display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
           <a href="/send-one-photograph" style="border:0;background:{{ goldBg }};color:#191306;text-shadow:0 1px 0 rgba(255,248,214,.55);box-shadow:{{ goldShadow }};border-radius:7px;padding:16px 28px;font:600 14px/1 'Plus Jakarta Sans',sans-serif">Send a photograph too</a>
-          <a href="/" style="border:0;border-bottom:1px solid #141414;padding:0 0 5px;align-self:center;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase">Back to the films</a>
+          <a href="/" style="border:0;border-bottom:1px solid #141414;padding:0 0 5px;align-self:center;font:500 11px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase">Back to the films</a>
         </div>
       </div>
     </sc-if>
@@ -219,8 +220,10 @@ class Component extends DCLogic {
     const c = (sh) => { const a = (n >> sh) & 255, b = (t >> sh) & 255; return Math.round(a + (b - a) * amt); };
     return 'rgb(' + c(16) + ',' + c(8) + ',' + c(0) + ')';
   }
+  // Flat by design. This used to return a four-stop gradient that faked
+  // a lit metal edge; the bar is now a solid line of the accent colour.
   metalRule(accent) {
-    return 'linear-gradient(180deg,' + this.mixHex(accent, '#FFFFFF', 0.42) + ' 0%,' + this.mixHex(accent, '#FFFFFF', 0.08) + ' 36%,' + accent + ' 60%,' + this.mixHex(accent, '#000000', 0.34) + ' 100%)';
+    return accent;
   }
 
   tierName(slug) {
@@ -292,7 +295,7 @@ class Component extends DCLogic {
   renderVals() {
     const s = this.state, accent = this.props.accent || '#8C6B3A';
     const ruleBg = this.metalRule(accent);
-    const ruleShadow = 'inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(46,32,10,.4),0 1px 2px rgba(46,32,10,.3)';
+    const ruleShadow = 'none';
     const q = this.steps[s.step];
     const ok = this.complete(s);
     const last = s.step >= this.steps.length - 1;

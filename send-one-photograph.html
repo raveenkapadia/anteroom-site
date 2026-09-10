@@ -12,10 +12,11 @@
 <title>ANTEROOM — Send one photograph</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="/image-slot.js"></script>
 <style>
 *{box-sizing:border-box}
+[style*="Jost"]{font-variant-numeric:tabular-nums}
 html,body{margin:0;padding:0;background:#FFFFFF;-webkit-font-smoothing:antialiased}
 a{color:#141414;text-decoration:none;border-bottom:1px solid rgba(20,20,20,.28)}
 a:hover{border-bottom-color:#141414}
@@ -35,12 +36,12 @@ input:focus-visible,button:focus-visible{outline:2px solid #8C6B3A;outline-offse
 <div style="position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(20,20,20,.08)">
   <div style="max-width:1560px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 clamp(16px,3vw,40px);height:62px">
     <div style="display:flex;align-items:baseline;gap:14px;flex:0 0 auto">
-      <a href="/" style="font:600 13px/1 'IBM Plex Mono',monospace;letter-spacing:0.22em;border:0">ANTEROOM</a>
-      <span style="display:{{ navDisplay }};font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">The test scene</span>
+      <a href="/" style="font:600 13px/1 'Jost',sans-serif;letter-spacing:0.22em;border:0">ANTEROOM</a>
+      <span style="display:{{ navDisplay }};font:400 10px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">The test scene</span>
     </div>
     <div style="display:flex;align-items:center;gap:16px;flex:0 0 auto">
-      <span style="display:{{ navDisplay }};font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Free · two working days</span>
-      <a href="/start-a-brief" style="border:0;border-bottom:1px solid #141414;padding:0 0 4px;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.13em;text-transform:uppercase;white-space:nowrap">Start a brief</a>
+      <span style="display:{{ navDisplay }};font:400 10px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Free · two working days</span>
+      <a href="/start-a-brief" style="border:0;border-bottom:1px solid #141414;padding:0 0 4px;font:500 11px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap">Start a brief</a>
     </div>
   </div>
 </div>
@@ -51,7 +52,7 @@ input:focus-visible,button:focus-visible{outline:2px solid #8C6B3A;outline-offse
     <img src="/video/scene-5.jpg" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;display:block">
     <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(9,16,28,.52) 0%,rgba(9,16,28,.3) 40%,rgba(9,16,28,.78) 100%)"></div>
     <div style="position:absolute;left:clamp(18px,2.4vw,36px);right:clamp(18px,2.4vw,36px);bottom:clamp(18px,2.4vw,32px);pointer-events:none">
-      <div style="font:400 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,.82)">One photograph · 00:05 · colour and music</div>
+      <div style="font:400 10px/1.7 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,.82)">One photograph · 00:05 · colour and music</div>
       <p style="margin:10px 0 0;max-width:34ch;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(20px,2vw,30px);line-height:1.24;letter-spacing:-0.012em;color:#FFFFFF;text-wrap:pretty">If it is not the best thing your property has, delete it.</p>
     </div>
   </div>
@@ -60,7 +61,7 @@ input:focus-visible,button:focus-visible{outline:2px solid #8C6B3A;outline-offse
 
     <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
       <div style="max-width:520px;animation:fade 400ms ease both">
-        <div style="display:flex;align-items:center;gap:12px;font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.2em;text-transform:uppercase;color:#5E5E58">
+        <div style="display:flex;align-items:center;gap:12px;font:500 10px/1 'Jost',sans-serif;letter-spacing:0.2em;text-transform:uppercase;color:#5E5E58">
           <span style="width:22px;height:3px;border-radius:2px;background:{{ ruleBg }};box-shadow:{{ ruleShadow }};display:block"></span>No cost, no call
         </div>
         <h1 style="margin:16px 0 0;font-weight:500;font-size:clamp(28px,3.6vw,50px);line-height:1.04;letter-spacing:-0.034em;text-wrap:pretty">Send one photograph. Get back five seconds.</h1>
@@ -68,21 +69,21 @@ input:focus-visible,button:focus-visible{outline:2px solid #8C6B3A;outline-offse
 
         <div style="margin-top:clamp(22px,2.6vw,34px);display:flex;flex-direction:column;gap:14px">
           <label style="display:flex;flex-direction:column;gap:7px">
-            <span style="font:400 9px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:#5E5E58">The photograph</span>
+            <span style="font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">The photograph</span>
             <div style="display:flex;align-items:center;gap:12px;border:1px dashed rgba(20,20,20,.28);border-radius:4px;padding:16px;background:#FBFAF8">
               <span style="flex:1 1 auto;min-width:0;font:400 14px/1.4 'Plus Jakarta Sans',sans-serif;color:{{ fileTone }};overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ fileName }}</span>
-              <label style="flex:0 0 auto;background:#141414;color:#FFFFFF;border-radius:2px;padding:10px 16px;cursor:pointer;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.13em;text-transform:uppercase">
+              <label style="flex:0 0 auto;background:#141414;color:#FFFFFF;border-radius:2px;padding:10px 16px;cursor:pointer;font:500 11px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase">
                 Choose
                 <input type="file" accept="image/*" onChange="{{ setFile }}" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden">
               </label>
             </div>
           </label>
           <label style="display:flex;flex-direction:column;gap:7px">
-            <span style="font:400 9px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:#5E5E58">Property name</span>
+            <span style="font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Property name</span>
             <input value="{{ property }}" onInput="{{ setProperty }}" placeholder="The Grand, Dubai Marina" style="width:100%;background:#FFFFFF;border:1px solid rgba(20,20,20,.2);border-radius:4px;padding:14px 16px;font:400 15px/1.4 'Plus Jakarta Sans',sans-serif">
           </label>
           <label style="display:flex;flex-direction:column;gap:7px">
-            <span style="font:400 9px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:#5E5E58">Where to send it</span>
+            <span style="font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Where to send it</span>
             <input value="{{ email }}" onInput="{{ setEmail }}" placeholder="you@property.com" style="width:100%;background:#FFFFFF;border:1px solid rgba(20,20,20,.2);border-radius:4px;padding:14px 16px;font:400 15px/1.4 'Plus Jakarta Sans',sans-serif">
           </label>
           <input onInput="{{ setCompany }}" tabindex="-1" autoComplete="off" aria-hidden="true" placeholder="Company" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0">
@@ -90,20 +91,20 @@ input:focus-visible,button:focus-visible{outline:2px solid #8C6B3A;outline-offse
 
         <button onClick="{{ send }}" disabled="{{ disabled }}" style="margin-top:20px;width:100%;background:{{ btnBg }};color:{{ btnFg }};text-shadow:{{ btnTextShadow }};box-shadow:{{ btnShadow }};border:0;border-radius:7px;padding:17px 24px;cursor:{{ btnCursor }};font:600 14px/1 'Plus Jakarta Sans',sans-serif;opacity:{{ btnOpacity }};transition:opacity 350ms">{{ btnLabel }}</button>
         <p style="display:{{ errShow }};margin:12px 0 0;font:400 13px/1.6 'Plus Jakarta Sans',sans-serif;color:#A33B23">{{ err }}</p>
-        <p style="margin:14px 0 0;font:400 12px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.05em;color:#5E5E58">No obligation, and we will not add you to anything.</p>
+        <p style="margin:14px 0 0;font:400 12px/1.7 'Jost',sans-serif;letter-spacing:0.05em;color:#5E5E58">No obligation, and we will not add you to anything.</p>
       </div>
     </sc-if>
 
     <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
       <div style="max-width:520px;animation:fade 500ms ease both">
-        <div style="display:flex;align-items:center;gap:12px;font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:0.2em;text-transform:uppercase;color:#5E5E58">
+        <div style="display:flex;align-items:center;gap:12px;font:500 10px/1 'Jost',sans-serif;letter-spacing:0.2em;text-transform:uppercase;color:#5E5E58">
           <span style="width:22px;height:3px;border-radius:2px;background:{{ ruleBg }};box-shadow:{{ ruleShadow }};display:block"></span>Received
         </div>
         <h1 style="margin:16px 0 0;font-weight:500;font-size:clamp(28px,3.6vw,50px);line-height:1.04;letter-spacing:-0.034em">Your scene is in production.</h1>
         <p style="margin:12px 0 0;font:400 clamp(14px,1.4vw,17px)/1.6 'Plus Jakarta Sans',sans-serif;color:#4A4A44;text-wrap:pretty">A director picks the moment. An editor adds the colour and the music. It reaches your inbox within two working days. Nothing else happens in between.</p>
         <div style="margin-top:clamp(20px,2.4vw,30px);display:flex;flex-wrap:wrap;gap:12px">
           <a href="/start-a-brief" style="border:0;background:{{ goldBg }};color:#191306;text-shadow:0 1px 0 rgba(255,248,214,.55);box-shadow:{{ goldShadow }};border-radius:7px;padding:16px 28px;font:600 14px/1 'Plus Jakarta Sans',sans-serif">Start a brief while you wait</a>
-          <a href="/" style="border:0;border-bottom:1px solid #141414;padding:0 0 5px;align-self:center;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase">Back to the films</a>
+          <a href="/" style="border:0;border-bottom:1px solid #141414;padding:0 0 5px;align-self:center;font:500 11px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase">Back to the films</a>
         </div>
       </div>
     </sc-if>
@@ -197,8 +198,10 @@ class Component extends DCLogic {
     const c = (sh) => { const a = (n >> sh) & 255, b = (t >> sh) & 255; return Math.round(a + (b - a) * amt); };
     return 'rgb(' + c(16) + ',' + c(8) + ',' + c(0) + ')';
   }
+  // Flat by design. This used to return a four-stop gradient that faked
+  // a lit metal edge; the bar is now a solid line of the accent colour.
   metalRule(a) {
-    return 'linear-gradient(180deg,' + this.mixHex(a, '#FFFFFF', 0.42) + ' 0%,' + this.mixHex(a, '#FFFFFF', 0.08) + ' 36%,' + a + ' 60%,' + this.mixHex(a, '#000000', 0.34) + ' 100%)';
+    return a;
   }
 
   renderVals() {
@@ -207,7 +210,7 @@ class Component extends DCLogic {
     return {
       accent,
       ruleBg: this.metalRule(accent),
-      ruleShadow: 'inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(46,32,10,.4),0 1px 2px rgba(46,32,10,.3)',
+      ruleShadow: 'none',
       goldBg: this.gold, goldShadow: this.goldShadow,
       navDisplay: s.wide ? 'inline' : 'none',
       mainCols: s.wide ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
