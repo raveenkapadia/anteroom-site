@@ -236,7 +236,7 @@ image-slot{display:block}
     <div style="position:relative;width:100%;padding:clamp(28px,4vw,64px) clamp(20px,5vw,64px);text-align:center">
       <span style="font:400 10px/1.8 'IBM Plex Mono',monospace;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,.82)">First ten hotels — nine places left</span>
       <p style="margin:16px auto 0;max-width:24ch;font-weight:500;font-size:clamp(24px,4vw,58px);line-height:1.02;letter-spacing:-0.038em;color:#FFFFFF">Your first film for {{ founding.price }}.</p>
-      <p style="margin:16px auto 0;max-width:44ch;font:400 clamp(14px,1.5vw,18px)/1.55 'Plus Jakarta Sans',sans-serif;color:rgba(255,255,255,.9)">A lower price for the first ten hotels, if you let us show the film to others.</p>
+      <p style="margin:16px auto 0;max-width:44ch;font:400 clamp(14px,1.5vw,18px)/1.55 'Plus Jakarta Sans',sans-serif;color:rgba(255,255,255,.9)">A lower price for the first ten hotels. In return, we can show the film to others.</p>
       <button onClick="{{ toBrief }}" style="margin-top:24px;background:linear-gradient(180deg,#FFFAE6 2%,#F6E4AE 14%,#F1DA9A 30%,#EED18A 45%,#E4C478 56%,#D9B461 70%,#E0BD69 80%,#E3C070 88%,#DFC070 97%);color:#191306;text-shadow:0 1px 0 rgba(255,248,214,.55);box-shadow:inset 0 0 0 1px rgba(255,255,255,.5),inset 0 1px 0 rgba(255,255,255,.95),inset 0 7px 12px -7px rgba(255,255,255,.8),inset 0 -1px 0 rgba(255,252,242,.6),0 1px 2px rgba(30,22,6,.22),0 5px 12px -6px rgba(30,22,6,.34);border:0;border-radius:7px;padding:16px 28px;cursor:pointer;font:600 14px/1 'Plus Jakarta Sans',sans-serif;transition:background 350ms" style-hover="background:linear-gradient(180deg,#FFFDF4 2%,#FAEDC4 14%,#F7E4B0 30%,#F4DCA0 45%,#EDD08E 56%,#E4C177 70%,#EACA80 80%,#EDCD86 88%,#E9CC86 97%)">Take one of the nine</button>
     </div>
   </div>
@@ -292,7 +292,7 @@ image-slot{display:block}
     <p style="margin:clamp(13px,1.6vw,18px) 0 0;white-space:nowrap;font:400 clamp(13px,1.6vw,17px)/1.5 'Plus Jakarta Sans',sans-serif;color:#4A4A44">A finished scene, free, in two working days.</p>
     <div style="margin-top:clamp(22px,3vw,34px);display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
       <a href="/" style="border:0;background:linear-gradient(180deg,#FFFAE6 2%,#F6E4AE 14%,#F1DA9A 30%,#EED18A 45%,#E4C478 56%,#D9B461 70%,#E0BD69 80%,#E3C070 88%,#DFC070 97%);color:#191306;text-shadow:0 1px 0 rgba(255,248,214,.55);box-shadow:inset 0 0 0 1px rgba(255,255,255,.5),inset 0 1px 0 rgba(255,255,255,.95),inset 0 7px 12px -7px rgba(255,255,255,.8),inset 0 -1px 0 rgba(255,252,242,.6),0 1px 2px rgba(30,22,6,.22),0 5px 12px -6px rgba(30,22,6,.34);border-radius:7px;padding:16px 28px;font:600 14px/1 'Plus Jakarta Sans',sans-serif">Start a brief</a>
-      <a href="/audiences" style="border:0;border-bottom:1px solid #141414;padding:0 0 5px;align-self:center;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase">See the twelve audiences</a>
+      <a href="/audiences" style="border:0;border-bottom:1px solid #141414;padding:0 0 5px;align-self:center;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:0.14em;text-transform:uppercase">See the eight audiences</a>
     </div>
   </div>
 </section>
@@ -358,7 +358,7 @@ class Component extends DCLogic {
     ['Wide — website, YouTube, lobby screens', '1', '3', '6', '16:9 · 1920 × 1080'],
     ['Tall — Reels, TikTok, Stories', '1', '3', '6', '9:16 · 1080 × 1920'],
     ['Square — Instagram, Facebook, LinkedIn', '1', '3', '6', '1:1 · 1080 × 1080'],
-    ['Short cut — paid ads and TVC', '1', '3', '6', '16:9 · 1920 × 1080 · 15 sec'],
+    ['Short cut — paid ads and TV', '1', '3', '6', '16:9 · 1920 × 1080 · 15 sec'],
     ['Sizes in total', '4', '12', '24', ''],
     ['Extra languages', 'LANG_EACH', '1 free', '3 free', ''],
     ['Same look across every film', 'Only one film', 'Yes — one campaign', 'Yes — one campaign', 'Same colour, lighting and pace throughout']
@@ -370,13 +370,13 @@ class Component extends DCLogic {
     ['16:9', '1920 × 1080', 'Wide', 'Your website, YouTube, and screens in the lobby', 'website and YouTube'],
     ['9:16', '1080 × 1920', 'Tall', 'Instagram Reels, TikTok, and Stories', 'Reels and TikTok'],
     ['1:1', '1080 × 1080', 'Square', 'Instagram and Facebook feeds, and LinkedIn', 'feeds and LinkedIn'],
-    ['16:9', '1920 × 1080', 'Short cut', 'Paid ads, and a TVC if you buy air time', 'ads and TVC, 15 sec']
+    ['16:9', '1920 × 1080', 'Short cut', 'Paid ads, and a TV ad if you buy air time', 'ads and TV, 15 sec']
   ];
 
   addonData = [['Another language', 150], ['A seasonal update', 400], ['Short cuts for ads', 250], ['A one-page venue sheet', 200]];
 
   wayData = [
-    ['Hiring a film crew', 1000, 15000, 'One to eight weeks', 'A real crew and a real result, if you have the budget, the time, and can close the room.'],
+    ['Hiring a film crew', 1000, 15000, 'One to eight weeks', 'A real crew and a real result. You need the budget, the time, and a room you can close.'],
     ['A photo-to-video app', 0, 0, 'Minutes', 'It turns your photos into one film, for nobody in particular. Cheap because nobody wrote it.'],
     ['Working with us', 750, 4500, 'One to three weeks', 'A film written and directed for one kind of guest, with one job to do.']
   ];
@@ -384,7 +384,7 @@ class Component extends DCLogic {
   faqData = [
     ['Do the films look AI-made?', 'Do not take our word for it. Send one photograph and we will send back a finished scene, free.'],
     ['What if we do not like it?', 'Two changes to the script, one to the finished film. If you still cannot use it, you do not pay.'],
-    ['What do you need from us?', 'The photos you already have, and an hour to talk about who you want to reach.'],
+    ['What do you need from us?', 'The photos you already have. And an hour to talk about who you want to reach.'],
     ['Who owns the film?', 'You do, from the day we hand it over. Use it anywhere, for as long as you like.'],
     ['Will it show things we do not have?', 'No. We write down what every scene was made from. If you do not have it, it is not in the film.'],
     ['Why is this cheaper than an agency?', 'We work from photos you already own. No crew, no shoot day, no closing your ballroom.']

@@ -123,7 +123,7 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px soli
           <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(9,16,28,.5) 0%,rgba(9,16,28,.6) 50%,rgba(9,16,28,.8) 100%)"></div>
           <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(20px,4vw,48px);pointer-events:none">
             <h1 style="margin:0;font-weight:500;font-size:clamp(26px,3.6vw,50px);line-height:1.05;letter-spacing:-0.034em;color:#FFFFFF">Brief received.</h1>
-            <p style="margin:14px auto 0;max-width:52ch;font:400 clamp(14px,1.5vw,17px)/1.6 'Plus Jakarta Sans',sans-serif;color:rgba(244,243,239,.92);text-wrap:pretty">A producer will read it and come back within one working day, with either a script direction or a question. A real reply from a person.</p>
+            <p style="margin:14px auto 0;max-width:52ch;font:400 clamp(14px,1.5vw,17px)/1.6 'Plus Jakarta Sans',sans-serif;color:rgba(244,243,239,.92);text-wrap:pretty">A producer will read it and reply within one working day. You will get either a direction for the script, or a question. A real reply from a person.</p>
           <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:center;font:400 10px/1.8 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:rgba(244,243,239,.72)">
             <span>Audience — {{ sentAudience }}</span>
             <span style="display:{{ sentTierShow }}">Plan — {{ tierName }}</span>
@@ -175,7 +175,7 @@ class Component extends DCLogic {
   steps = [
     { key: 'audience', eyebrow: 'Step one', title: 'Who are you trying to win?', hint: 'Pick the guest this film is for. You can add more audiences later.', foot: 'Pick one' },
     { key: 'property', eyebrow: 'Step two', title: 'Your property.', hint: 'Just enough for us to look you up before we reply.', foot: 'Name and city' },
-    { key: 'photos', eyebrow: 'Step three', title: 'Your photography, and the languages.', hint: 'We work from the images you already own, and rebuild the film in each language — re-voiced, re-paced, re-typeset. Not subtitles.', foot: 'A link, and any languages' },
+    { key: 'photos', eyebrow: 'Step three', title: 'Your photography, and the languages.', hint: 'We work from the photos you already own. We rebuild the film in each language, with a new voice, new timing and new on-screen text. Not subtitles.', foot: 'A link, and any languages' },
     { key: 'you', eyebrow: 'Step four', title: 'And you.', hint: 'So a producer knows who they are writing back to.', foot: 'Name and email' }
   ];
 

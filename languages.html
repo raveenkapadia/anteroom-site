@@ -90,7 +90,7 @@ image-slot{display:block}
     <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(9,16,28,.4) 0%,rgba(9,16,28,.1) 34%,rgba(9,16,28,.72) 100%)"></div>
     <div style="position:absolute;top:clamp(14px,1.8vw,24px);left:clamp(16px,2vw,30px);right:clamp(16px,2vw,30px);display:flex;justify-content:space-between;gap:14px;pointer-events:none;font:400 10px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,.8)">
       <span>Edition — {{ live.code }}</span>
-      <span>Same cut · re-voiced · re-typeset</span>
+      <span>Same cut · new voice · new on-screen text</span>
     </div>
     <div style="position:absolute;left:clamp(18px,2.4vw,40px);right:clamp(18px,2.4vw,40px);bottom:clamp(18px,2.4vw,36px);pointer-events:none">
       <div style="height:3px;border-radius:2px;background:{{ ruleBg }};box-shadow:{{ ruleShadow }};width:44px"></div>
@@ -145,7 +145,7 @@ image-slot{display:block}
 <section style="padding:0 clamp(16px,3vw,40px) clamp(32px,4.2vw,70px)">
   <div style="max-width:1100px;margin:0 auto;border:1px solid rgba(20,20,20,.14);padding:clamp(22px,3vw,44px)">
     <div style="font:400 9px/1.8 'IBM Plex Mono',monospace;letter-spacing:0.16em;text-transform:uppercase;color:#5E5E58">Why it matters</div>
-    <p style="margin:14px 0 0;max-width:60ch;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(19px,2.1vw,30px);line-height:1.3;letter-spacing:-0.012em;color:#141414;text-wrap:pretty">Dubai’s four largest source markets in 2025 were India, Saudi Arabia, the United Kingdom and Russia. Three of the four are not English-first markets.</p>
+    <p style="margin:14px 0 0;max-width:60ch;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(19px,2.1vw,30px);line-height:1.3;letter-spacing:-0.012em;color:#141414;text-wrap:pretty">In 2025, Dubai’s four biggest source markets were India, Saudi Arabia, the UK and Russia. Three of the four do not speak English first.</p>
     <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:10px 26px">
       <sc-for list="{{ markets }}" as="m" hint-placeholder-count="4">
         <span style="font:400 13px/1.6 'IBM Plex Mono',monospace;letter-spacing:0.04em;color:#4A4A44">{{ m }}</span>
@@ -192,26 +192,26 @@ class Component extends DCLogic {
 
   // native name, English name, code, lower-third line, note, script, direction
   langData = [
-    ['English', 'English', 'EN', 'A room that holds four hundred.', 'Read for a British and Gulf ear', 'JAK', 'ltr'],
+    ['English', 'English', 'EN', 'A room that holds four hundred.', 'Voiced for British and Gulf listeners', 'JAK', 'ltr'],
     ['العربية', 'Arabic', 'AR', 'قاعة تتسع لأربعمئة ضيف.', 'Right-to-left, set properly', 'AR', 'rtl'],
-    ['हिन्दी', 'Hindi', 'HI', 'चार सौ मेहमानों का हॉल।', 'Devanagari, correctly composed', 'DEV', 'ltr'],
-    ['Русский', 'Russian', 'RU', 'Зал на четыреста гостей.', 'Cyrillic, and a slower read', 'JAK', 'ltr'],
-    ['Deutsch', 'German', 'DE', 'Ein Saal für vierhundert Gäste.', 'Longer words, re-paced', 'JAK', 'ltr'],
+    ['हिन्दी', 'Hindi', 'HI', 'चार सौ मेहमानों का हॉल।', 'Devanagari, drawn correctly', 'DEV', 'ltr'],
+    ['Русский', 'Russian', 'RU', 'Зал на четыреста гостей.', 'Cyrillic, and a slower voice', 'JAK', 'ltr'],
+    ['Deutsch', 'German', 'DE', 'Ein Saal für vierhundert Gäste.', 'Longer words, timed again', 'JAK', 'ltr'],
     ['Français', 'French', 'FR', 'Une salle pour quatre cents.', 'Re-voiced, not dubbed', 'JAK', 'ltr'],
-    ['中文', 'Chinese', 'ZH', '可容纳四百人的宴会厅。', 'Simplified, and typeset for it', 'SC', 'ltr'],
-    ['Español', 'Spanish', 'ES', 'Un salón para cuatrocientos.', 'Neutral Latin American read', 'JAK', 'ltr'],
+    ['中文', 'Chinese', 'ZH', '可容纳四百人的宴会厅。', 'Simplified, and set for it', 'SC', 'ltr'],
+    ['Español', 'Spanish', 'ES', 'Un salón para cuatrocientos.', 'Neutral Latin American voice', 'JAK', 'ltr'],
     ['Italiano', 'Italian', 'IT', 'Una sala da quattrocento.', 'Warmer pacing, same cut', 'JAK', 'ltr'],
-    ['اردو', 'Urdu', 'UR', 'چار سو مہمانوں کا ہال۔', 'Right-to-left, Nastaliq where set', 'AR', 'rtl'],
+    ['اردو', 'Urdu', 'UR', 'چار سو مہمانوں کا ہال۔', 'Right to left, in Nastaliq where possible', 'AR', 'rtl'],
     ['Português', 'Portuguese', 'PT', 'Um salão para quatrocentos.', 'Brazilian or European', 'JAK', 'ltr']
   ];
 
   sixData = [
-    ['Voice', 'A native speaker reads it, chosen for the market. Not a synthesised accent laid over an English cut.'],
-    ['Pace', 'Some languages need more time to say the same thing. The edit is re-timed so nothing is rushed.'],
-    ['Typography', 'Proper right-to-left setting for Arabic, correct Devanagari and Cyrillic, and type that belongs to the language rather than surviving it.'],
-    ['Cultural read', 'A native reader watches the whole film before delivery and flags anything that lands wrong.'],
-    ['On-screen text', 'Every title, price and place name is rebuilt in the language — not overlaid on top of the English.'],
-    ['Sound', 'Music and mix are rebalanced around the new voice, so the read sits in the track rather than on it.']
+    ['Voice', 'A native speaker reads it, chosen for that market. Not a computer accent placed over the English film.'],
+    ['Pace', 'Some languages need more time to say the same thing. The edit is timed again so nothing is rushed.'],
+    ['Typography', 'Arabic is set right to left, properly. Hindi and Russian are drawn correctly. The type is made for the language, not forced into it.'],
+    ['Cultural check', 'A native speaker watches the whole film before we send it. They flag anything that feels wrong.'],
+    ['On-screen text', 'Every title, price and place name is rebuilt in the language. Nothing is laid on top of the English.'],
+    ['Sound', 'Music and sound are balanced around the new voice. The voice sits inside the music, not on top of it.']
   ];
 
   marketData = ['India — 2.8m', 'Saudi Arabia — 2.1m', 'United Kingdom — 1.8m', 'Russia — 1.5m'];

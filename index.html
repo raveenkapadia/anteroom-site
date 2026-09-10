@@ -128,7 +128,7 @@ image-slot{display:block}
         </sc-for>
       </div>
     </div>
-    <div style="position:absolute;bottom:clamp(14px,2vw,22px);right:clamp(16px,3vw,40px);pointer-events:none;font:400 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,.9);text-align:right">Written · Cast · Directed — not photography, animated</div>
+    <div style="position:absolute;bottom:clamp(14px,2vw,22px);right:clamp(16px,3vw,40px);pointer-events:none;font:400 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,.9);text-align:right">Written · Cast · Directed — not photos made to move</div>
   </div>
 </section>
 
@@ -223,7 +223,7 @@ image-slot{display:block}
       <div style="font:400 12px/1.5 'Plus Jakarta Sans',sans-serif;color:#5A5A54">One still from your property.</div>
       <div style="font:500 18px/1 'IBM Plex Mono',monospace;color:{{ accent }}">↓</div>
       <div style="font:400 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:0.16em;text-transform:uppercase;color:#5E5E58">We deliver</div>
-      <div style="font:400 12px/1.5 'Plus Jakarta Sans',sans-serif;color:#5A5A54">{{ shot.spec }} — scripted, cast, graded, scored.</div>
+      <div style="font:400 12px/1.5 'Plus Jakarta Sans',sans-serif;color:#5A5A54">{{ shot.spec }} — written, cast, coloured, with music.</div>
     </div>
     <div style="flex:1 1 480px;min-width:0;position:relative;min-height:clamp(280px,58vh,660px)">
       <video src="{{ shot.video }}" poster="{{ shot.poster }}" autoPlay="true" muted="true" loop="true" playsInline="true" preload="auto" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;display:block"></video>
@@ -264,7 +264,7 @@ image-slot{display:block}
         <span style="width:22px;height:3px;border-radius:2px;background:{{ ruleBg }};box-shadow:{{ ruleShadow }};display:block"></span>What you get
       </div>
       <h2 style="margin:18px 0 0;white-space:nowrap;font-weight:500;font-size:clamp(17px,3.4vw,42px);line-height:1.1;letter-spacing:-0.028em">Four films, one for each place it runs.</h2>
-      <p style="margin:clamp(13px,1.6vw,18px) 0 0;white-space:nowrap;font:400 clamp(13px,1.55vw,17px)/1.5 'Plus Jakarta Sans',sans-serif;color:#4A4A44">Filmed at true size, never cropped.</p>
+      <p style="margin:clamp(13px,1.6vw,18px) 0 0;white-space:nowrap;font:400 clamp(13px,1.55vw,17px)/1.5 'Plus Jakarta Sans',sans-serif;color:#4A4A44">Made for each size, never cropped.</p>
     </div>
     <div style="margin-top:clamp(24px,3.4vw,44px);display:flex;flex-wrap:wrap;gap:clamp(13px,1.8vw,24px);align-items:flex-end">
       <sc-for list="{{ formats }}" as="f" hint-placeholder-count="4">
@@ -320,7 +320,7 @@ image-slot{display:block}
     <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
       <div style="max-width:44ch;margin:0 auto;text-align:center;animation:rise 700ms cubic-bezier(.2,.9,.2,1) both">
         <h2 style="margin:0;font-weight:500;font-size:clamp(26px,3.2vw,44px);line-height:1.08;letter-spacing:-0.03em">Brief received.</h2>
-        <p style="margin:16px 0 0;font:400 17px/1.62 'Plus Jakarta Sans',sans-serif;color:#4A4A44">A producer replies within one working day. Not a sequence — a person.</p>
+        <p style="margin:16px 0 0;font:400 17px/1.62 'Plus Jakarta Sans',sans-serif;color:#4A4A44">A producer replies within one working day. Not an automatic email — a person.</p>
       </div>
     </sc-if>
     <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
@@ -366,17 +366,17 @@ class Component extends DCLogic {
   ];
 
   processData = [
-    ['01','Audience & goal','Who we are selling to, and the number it has to move.','Producer',1],
+    ['01','Audience & goal','Who we are selling to, and the result it has to deliver.','Producer',1],
     ['02','Concept & story','One idea, written down before anything is made.','Creative director',3],
-    ['03','Script','Scene by scene, with durations. You approve it.','Writer',4],
-    ['04','Casting','Characters chosen for this audience — age, dress, register.','Creative director',2],
+    ['03','Script','Scene by scene, with timings. You approve it.','Writer',4],
+    ['04','Casting','People chosen for this audience — age, dress, how they speak.','Creative director',2],
     ['05','Scene creation','Each scene built from your own photography.','Producer',1],
-    ['06','Visual consistency','One lens, one palette, one light. Nothing drifts.','Creative director',6],
-    ['07','Music','Scored for the placement. A stand and a feed are not mixed alike.','Editor',3],
-    ['08','Editing','Cut for rhythm, then graded to the reference.','Editor',8],
-    ['09','Localization','Re-voiced and re-typeset. Editions, not subtitles.','Producer',4],
-    ['10','Quality review','Accuracy statement and shot-by-shot provenance.','Producer',5],
-    ['11','Delivery','Four masters, spec sheet, full commercial rights.','Producer',7]
+    ['06','One look','One camera style, one set of colours, one light. Nothing changes between scenes.','Creative director',6],
+    ['07','Music','Music written for where it runs. A trade stand and a phone feed need different sound.','Editor',3],
+    ['08','Editing','Cut for rhythm, then coloured to match the guide.','Editor',8],
+    ['09','Other languages','New voice, new on-screen text. Not subtitles.','Producer',4],
+    ['10','Quality review','We check every claim, and note what each scene was made from.','Producer',5],
+    ['11','Delivery','Four finished files, a list of sizes, and full rights to use them.','Producer',7]
   ];
 
   formatData = [
@@ -387,20 +387,20 @@ class Component extends DCLogic {
   ];
 
   statData = [
-    ['48%', 'of planners are influenced by photos and videos when deciding whether to invite a venue to bid — behind only the meeting room specification, at 50%.', 'Cvent · 2026 Global Planner Sourcing Report · 1,650 planners, six regions', 'https://www.cvent.com/en/blog/hospitality/2026-Global-Cvent-Planner-Sourcing-Report'],
-    ['71% vs 24%', 'Travellers say video influenced their travel decisions, against static images — seven markets, 7,000 travellers.', 'Expedia Group Advertising · The Science of Wanderlust, October 2025', 'https://www.expediagroup.com/media/media-details/2025/EXPEDIA-GROUP-STUDY-REVEALS-NEW-INSIGHTS-IN-TRAVEL-CONTENT-AMID-AI-BOOM-ccabfae53/default.aspx'],
-    ['27%', 'of planners named a high-quality, comprehensive reply the second most important factor in booking or rebooking a venue, behind only rates.', 'Cvent · 2026 Global Planner Sourcing Report', 'https://www.cvent.com/en/blog/hospitality/venue-collaboration-hybrid-planners']
+    ['48%', 'of planners say photos and video help them choose which hotels to ask.', 'Cvent · 2026 Global Planner Sourcing Report · 1,650 planners, six regions', 'https://www.cvent.com/en/blog/hospitality/2026-Global-Cvent-Planner-Sourcing-Report'],
+    ['71% vs 24%', 'Travellers moved by video, against photos. Seven markets, 7,000 people.', 'Expedia Group Advertising · The Science of Wanderlust, October 2025', 'https://www.expediagroup.com/media/media-details/2025/EXPEDIA-GROUP-STUDY-REVEALS-NEW-INSIGHTS-IN-TRAVEL-CONTENT-AMID-AI-BOOM-ccabfae53/default.aspx'],
+    ['27%', 'of planners say a good, detailed reply is the second biggest reason they book. Only price matters more.', 'Cvent · 2026 Global Planner Sourcing Report', 'https://www.cvent.com/en/blog/hospitality/venue-collaboration-hybrid-planners']
   ];
 
   tickerData = [
-    ['71% of travellers say video influenced their travel decisions, against 24% for static images', 'Expedia Group Advertising · The Science of Wanderlust', '28 October 2025', 'https://www.expediagroup.com/media/media-details/2025/EXPEDIA-GROUP-STUDY-REVEALS-NEW-INSIGHTS-IN-TRAVEL-CONTENT-AMID-AI-BOOM-ccabfae53/default.aspx'],
-    ['Photos and videos influence 48% of planners deciding whether to invite a venue to bid', 'Cvent · 2026 Global Planner Sourcing Report', 'March 2026', 'https://www.cvent.com/en/blog/hospitality/2026-Global-Cvent-Planner-Sourcing-Report'],
-    ['Short videos positively influenced 49% of travel booking decisions; long-form videos 45%', 'Expedia Group Advertising · Science of Wanderlust', '28 October 2025', 'https://www.expedia.com/newsroom/expedia-group-advertising-travel-content-research/'],
-    ['Scenes of two to nine seconds let travellers optimally absorb the content', 'Expedia Group Advertising · Science of Wanderlust', '28 October 2025', 'https://www.expediagroup.com/media/media-details/2025/EXPEDIA-GROUP-STUDY-REVEALS-NEW-INSIGHTS-IN-TRAVEL-CONTENT-AMID-AI-BOOM-ccabfae53/default.aspx'],
-    ['Meeting room specifications influence 50% of planners; floor plans and diagrams 46%', 'Cvent · 2026 Global Planner Sourcing Report', 'March 2026', 'https://www.cvent.com/en/blog/hospitality/2026-Global-Cvent-Planner-Sourcing-Report'],
-    ['A high-quality, comprehensive reply was the second most important factor in booking or rebooking a venue, behind only rates', 'Cvent · 2026 Global Planner Sourcing Report', 'June 2026', 'https://www.cvent.com/en/blog/hospitality/venue-collaboration-hybrid-planners'],
-    ['Travellers named transparency (52%), clarity and confidence (46%) and authenticity (45%) as the tones that build most trust', 'Expedia Group Advertising · Science of Wanderlust', '28 October 2025', 'https://www.expediagroup.com/media/media-details/2025/EXPEDIA-GROUP-STUDY-REVEALS-NEW-INSIGHTS-IN-TRAVEL-CONTENT-AMID-AI-BOOM-ccabfae53/default.aspx'],
-    ['83% of planners expect a venue to come back to them in four days or less', 'Cvent · 2025 Planner Sourcing Report, Europe', 'April 2025', 'https://www.hospitalitynet.org/news/4124537.html']
+    ['Video shaped the travel choices of 71% of travellers. For photos it was 24%.', 'Expedia Group Advertising · The Science of Wanderlust', '28 October 2025', 'https://www.expediagroup.com/media/media-details/2025/EXPEDIA-GROUP-STUDY-REVEALS-NEW-INSIGHTS-IN-TRAVEL-CONTENT-AMID-AI-BOOM-ccabfae53/default.aspx'],
+    ['Photos and video help 48% of planners choose which hotels to ask.', 'Cvent · 2026 Global Planner Sourcing Report', 'March 2026', 'https://www.cvent.com/en/blog/hospitality/2026-Global-Cvent-Planner-Sourcing-Report'],
+    ['Short videos helped 49% of travellers book. Longer videos helped 45%.', 'Expedia Group Advertising · Science of Wanderlust', '28 October 2025', 'https://www.expedia.com/newsroom/expedia-group-advertising-travel-content-research/'],
+    ['Travellers take in a scene best when it runs two to nine seconds.', 'Expedia Group Advertising · Science of Wanderlust', '28 October 2025', 'https://www.expediagroup.com/media/media-details/2025/EXPEDIA-GROUP-STUDY-REVEALS-NEW-INSIGHTS-IN-TRAVEL-CONTENT-AMID-AI-BOOM-ccabfae53/default.aspx'],
+    ['Meeting room details matter to 50% of planners. Floor plans matter to 46%.', 'Cvent · 2026 Global Planner Sourcing Report', 'March 2026', 'https://www.cvent.com/en/blog/hospitality/2026-Global-Cvent-Planner-Sourcing-Report'],
+    ['A good, detailed reply is the second biggest reason planners book. Only price matters more.', 'Cvent · 2026 Global Planner Sourcing Report', 'June 2026', 'https://www.cvent.com/en/blog/hospitality/venue-collaboration-hybrid-planners'],
+    ['Travellers trust a film most when it is honest (52%), clear (46%) and real (45%).', 'Expedia Group Advertising · Science of Wanderlust', '28 October 2025', 'https://www.expediagroup.com/media/media-details/2025/EXPEDIA-GROUP-STUDY-REVEALS-NEW-INSIGHTS-IN-TRAVEL-CONTENT-AMID-AI-BOOM-ccabfae53/default.aspx'],
+    ['83% of planners expect a venue to reply in four days or less.', 'Cvent · 2025 Planner Sourcing Report, Europe', 'April 2025', 'https://www.hospitalitynet.org/news/4124537.html']
   ];
 
   quoteData = [
