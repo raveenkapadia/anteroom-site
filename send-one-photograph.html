@@ -69,7 +69,7 @@ input:focus-visible,button:focus-visible{outline:2px solid #8C6B3A;outline-offse
 
         <div style="margin-top:clamp(22px,2.6vw,34px);display:flex;flex-direction:column;gap:14px">
           <label style="display:flex;flex-direction:column;gap:7px">
-            <span style="font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">The photograph</span>
+            <span style="font:400 10px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">The photograph</span>
             <div style="display:flex;align-items:center;gap:12px;border:1px dashed rgba(20,20,20,.28);border-radius:4px;padding:16px;background:#FBFAF8">
               <span style="flex:1 1 auto;min-width:0;font:400 14px/1.4 'Plus Jakarta Sans',sans-serif;color:{{ fileTone }};overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ fileName }}</span>
               <label style="flex:0 0 auto;background:#141414;color:#FFFFFF;border-radius:2px;padding:10px 16px;cursor:pointer;font:500 11px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase">
@@ -79,11 +79,11 @@ input:focus-visible,button:focus-visible{outline:2px solid #8C6B3A;outline-offse
             </div>
           </label>
           <label style="display:flex;flex-direction:column;gap:7px">
-            <span style="font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Property name</span>
+            <span style="font:400 10px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Property name</span>
             <input value="{{ property }}" onInput="{{ setProperty }}" placeholder="The Grand, Dubai Marina" style="width:100%;background:#FFFFFF;border:1px solid rgba(20,20,20,.2);border-radius:4px;padding:14px 16px;font:400 15px/1.4 'Plus Jakarta Sans',sans-serif">
           </label>
           <label style="display:flex;flex-direction:column;gap:7px">
-            <span style="font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Where to send it</span>
+            <span style="font:400 10px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Where to send it</span>
             <input value="{{ email }}" onInput="{{ setEmail }}" placeholder="you@property.com" style="width:100%;background:#FFFFFF;border:1px solid rgba(20,20,20,.2);border-radius:4px;padding:14px 16px;font:400 15px/1.4 'Plus Jakarta Sans',sans-serif">
           </label>
           <input onInput="{{ setCompany }}" tabindex="-1" autoComplete="off" aria-hidden="true" placeholder="Company" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0">

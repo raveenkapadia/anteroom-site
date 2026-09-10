@@ -102,14 +102,14 @@ image-slot{display:block}
         <div style="position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;background:#0C1420">
           <image-slot id="{{ t.slot }}" shape="rect" fit="cover" src="{{ t.img }}" placeholder="{{ t.name }}" style="width:100%;height:100%"></image-slot>
           <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(9,16,28,.34) 0%,rgba(9,16,28,0) 38%,rgba(9,16,28,.78) 100%)"></div>
-          <div style="position:absolute;top:clamp(10px,1.2vw,16px);left:clamp(13px,1.4vw,20px);right:clamp(13px,1.4vw,20px);display:flex;justify-content:space-between;gap:10px;pointer-events:none;font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase">
+          <div style="position:absolute;top:clamp(10px,1.2vw,16px);left:clamp(13px,1.4vw,20px);right:clamp(13px,1.4vw,20px);display:flex;justify-content:space-between;gap:10px;pointer-events:none;font:400 10px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase">
             <span style="white-space:nowrap;color:{{ t.chipTone }}">{{ t.label }}</span>
             <span style="white-space:nowrap;color:rgba(255,255,255,.82)">{{ t.days }}</span>
           </div>
           <div style="position:absolute;left:clamp(13px,1.4vw,20px);right:clamp(13px,1.4vw,20px);bottom:clamp(13px,1.4vw,20px);pointer-events:none">
             <div style="white-space:nowrap;font-weight:500;font-size:clamp(16px,1.5vw,23px);line-height:1.1;letter-spacing:-0.024em;color:#FFFFFF">{{ t.name }}</div>
             <div style="margin-top:8px;display:flex;align-items:baseline;gap:8px">
-              <span style="font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,.76)">{{ t.unit }}</span>
+              <span style="font:400 10px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,.76)">{{ t.unit }}</span>
               <span style="font-weight:500;font-size:clamp(24px,2.6vw,38px);line-height:1;letter-spacing:-0.04em;color:#FFFFFF">{{ t.price }}</span>
             </div>
           </div>
@@ -123,7 +123,7 @@ image-slot{display:block}
           </sc-for>
         </div>
         <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(20,20,20,.1)">
-          <div style="font:400 9px/1.7 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">{{ t.sizeCount }}</div>
+          <div style="font:400 10px/1.7 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">{{ t.sizeCount }}</div>
           <div style="margin-top:8px;display:flex;flex-direction:column;gap:5px">
             <sc-for list="{{ sizes }}" as="z" hint-placeholder-count="4">
               <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
@@ -145,7 +145,7 @@ image-slot{display:block}
 <!-- SIZES -->
 <section style="padding:0 clamp(16px,3vw,40px) clamp(26px,3.2vw,56px)">
   <div style="max-width:1100px;margin:0 auto">
-    <div style="text-align:center;font:400 9px/1.8 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Every film, delivered in 4 sizes</div>
+    <div style="text-align:center;font:400 10px/1.8 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">Every film, delivered in 4 sizes</div>
     <div style="margin-top:clamp(14px,2vw,22px);display:grid;grid-template-columns:{{ sizeCols }};gap:1px;background:rgba(20,20,20,.1);border:1px solid rgba(20,20,20,.1)">
       <sc-for list="{{ sizes }}" as="z" hint-placeholder-count="4">
         <div style="min-width:0;background:#FFFFFF;padding:clamp(14px,1.8vw,20px)">
@@ -170,9 +170,9 @@ image-slot{display:block}
     </div>
     <div style="margin-top:clamp(22px,3vw,38px);max-width:1100px;margin-left:auto;margin-right:auto;border-top:1px solid rgba(20,20,20,.16)">
       <div style="display:{{ diffHeadDisplay }};grid-template-columns:{{ diffCols }};gap:0;align-items:center;padding:11px 0;border-bottom:1px solid rgba(20,20,20,.1)">
-        <span style="font:400 9px/1.7 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58"></span>
+        <span style="font:400 10px/1.7 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58"></span>
         <sc-for list="{{ diffHeads }}" as="dh" hint-placeholder-count="3">
-          <span style="text-align:center;white-space:nowrap;font:500 9px/1.7 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:{{ dh.tone }}">{{ dh.name }}</span>
+          <span style="text-align:center;white-space:nowrap;font:500 10px/1.7 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:{{ dh.tone }}">{{ dh.name }}</span>
         </sc-for>
       </div>
       <sc-for list="{{ diffs }}" as="d" hint-placeholder-count="3">
@@ -183,22 +183,22 @@ image-slot{display:block}
           </span>
           <div style="display:{{ diffValsDisplay }};grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:{{ diffValsTop }};min-width:0">
             <span style="min-width:0;text-align:center">
-              <span style="display:{{ diffMiniDisplay }};font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#8A8A84">One</span>
+              <span style="display:{{ diffMiniDisplay }};font:400 10px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#8A8A84">One</span>
               <span style="display:block;font-weight:500;font-size:clamp(14px,1.5vw,21px);line-height:1.25;letter-spacing:-0.02em;color:#4A4A44">{{ d.a }}</span>
             </span>
             <span style="min-width:0;text-align:center">
-              <span style="display:{{ diffMiniDisplay }};font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:{{ accent }}">Three</span>
+              <span style="display:{{ diffMiniDisplay }};font:400 10px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:{{ accent }}">Three</span>
               <span style="display:block;font-weight:500;font-size:clamp(14px,1.5vw,21px);line-height:1.25;letter-spacing:-0.02em;color:#141414">{{ d.b }}</span>
             </span>
             <span style="min-width:0;text-align:center">
-              <span style="display:{{ diffMiniDisplay }};font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#8A8A84">Six</span>
+              <span style="display:{{ diffMiniDisplay }};font:400 10px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#8A8A84">Six</span>
               <span style="display:block;font-weight:500;font-size:clamp(14px,1.5vw,21px);line-height:1.25;letter-spacing:-0.02em;color:#4A4A44">{{ d.c }}</span>
             </span>
           </div>
         </div>
       </sc-for>
       <div style="padding:clamp(26px,3.4vw,44px) 0 0">
-        <div style="text-align:center;font:400 9px/1.8 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">In every plan</div>
+        <div style="text-align:center;font:400 10px/1.8 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58">In every plan</div>
         <div style="margin-top:clamp(16px,2.2vw,26px);display:grid;grid-template-columns:{{ sharedCols }};gap:clamp(13px,1.8vw,22px) clamp(20px,3vw,48px)">
           <sc-for list="{{ shared }}" as="sh" hint-placeholder-count="6">
             <div style="min-width:0;display:flex;align-items:baseline;gap:11px">

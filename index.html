@@ -69,7 +69,7 @@ image-slot{display:block}
   </div>
   <div style="display:{{ subBarDisplay }};border-top:1px solid rgba(20,20,20,.07);background:rgba(255,255,255,.72)">
     <div style="max-width:1560px;margin:0 auto;padding:0 clamp(16px,3vw,40px);height:42px;display:flex;align-items:center;gap:14px">
-      <span style="flex:0 0 auto;font:400 9px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#8A8A84">On this page</span>
+      <span style="flex:0 0 auto;font:400 10px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#8A8A84">On this page</span>
       <span style="flex:0 0 auto;width:14px;height:1px;background:rgba(20,20,20,.16);display:block"></span>
       <nav class="hs" style="display:flex;align-items:center;gap:2px;overflow-x:auto;min-width:0">
         <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
@@ -87,14 +87,14 @@ image-slot{display:block}
       <button onClick="{{ toggleMenu }}" aria-label="Close menu" style="background:none;border:1px solid rgba(20,20,20,.2);border-radius:7px;padding:10px 15px;cursor:pointer;font:500 11px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase">Close</button>
     </div>
     <div style="margin-top:30px;display:flex;flex-direction:column">
-      <span style="padding-bottom:12px;font:400 9px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#8A8A84">Pages</span>
+      <span style="padding-bottom:12px;font:400 10px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#8A8A84">Pages</span>
       <span style="border-bottom:1px solid rgba(20,20,20,.1);padding:14px 0;font-weight:500;font-size:clamp(24px,7vw,34px);line-height:1.1;letter-spacing:-0.03em;color:#141414">Meetings &amp; Events</span>
       <a href="/audiences" style="border:0;border-bottom:1px solid rgba(20,20,20,.1);padding:14px 0;font-weight:500;font-size:clamp(24px,7vw,34px);line-height:1.1;letter-spacing:-0.03em;color:#5E5E58">Audiences</a>
       <a href="/process" style="border:0;border-bottom:1px solid rgba(20,20,20,.1);padding:14px 0;font-weight:500;font-size:clamp(24px,7vw,34px);line-height:1.1;letter-spacing:-0.03em;color:#5E5E58">Process</a>
       <a href="/languages" style="border:0;border-bottom:1px solid rgba(20,20,20,.1);padding:14px 0;font-weight:500;font-size:clamp(24px,7vw,34px);line-height:1.1;letter-spacing:-0.03em;color:#5E5E58">Languages</a>
       <a href="/pricing" style="border:0;border-bottom:1px solid rgba(20,20,20,.1);padding:14px 0;font-weight:500;font-size:clamp(24px,7vw,34px);line-height:1.1;letter-spacing:-0.03em;color:#5E5E58">Pricing</a>
       <a href="/studio" style="border:0;border-bottom:1px solid rgba(20,20,20,.1);padding:14px 0;font-weight:500;font-size:clamp(24px,7vw,34px);line-height:1.1;letter-spacing:-0.03em;color:#5E5E58">Studio</a>
-      <span style="padding:26px 0 12px;font:400 9px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#8A8A84">On this page</span>
+      <span style="padding:26px 0 12px;font:400 10px/1 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#8A8A84">On this page</span>
       <div style="display:flex;flex-wrap:wrap;gap:8px">
         <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
           <button onClick="{{ n.go }}" style="background:none;border:1px solid rgba(20,20,20,.16);border-radius:999px;padding:10px 15px;cursor:pointer;font:500 13px/1 'Plus Jakarta Sans',sans-serif;color:#141414">{{ n.name }}</button>
@@ -117,7 +117,7 @@ image-slot{display:block}
       <div style="max-width:26ch;margin:0 auto;opacity:{{ statOpacity }};transition:opacity 460ms cubic-bezier(.4,0,.2,1)">
         <div style="font-weight:500;font-size:clamp(52px,8.4vw,124px);line-height:.9;letter-spacing:-0.05em;color:#FFFFFF">{{ stat.big }}</div>
         <p style="margin:16px auto 0;max-width:34ch;font:400 clamp(15px,1.5vw,20px)/1.5 'Plus Jakarta Sans',sans-serif;color:rgba(255,255,255,.94)">{{ stat.text }}</p>
-        <p style="margin:14px auto 0;font:400 9px/1.7 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#FFFFFF;pointer-events:auto"><a href="{{ stat.href }}" target="_blank" rel="noopener" style="color:#FFFFFF;border-bottom-color:rgba(255,255,255,.5)">{{ stat.source }}</a></p>
+        <p style="margin:14px auto 0;font:400 10px/1.7 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#FFFFFF;pointer-events:auto"><a href="{{ stat.href }}" target="_blank" rel="noopener" style="color:#FFFFFF;border-bottom-color:rgba(255,255,255,.5)">{{ stat.source }}</a></p>
       </div>
       <div style="margin-top:clamp(22px,3vw,38px);display:flex;justify-content:center;gap:7px;pointer-events:auto">
         <sc-for list="{{ statDots }}" as="d" hint-placeholder-count="3">
@@ -130,7 +130,7 @@ image-slot{display:block}
         </sc-for>
       </div>
     </div>
-    <div style="position:absolute;bottom:clamp(14px,2vw,22px);right:clamp(16px,3vw,40px);pointer-events:none;font:400 10px/1.7 'Jost',sans-serif;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,.9);text-align:right">Written · Cast · Directed — not photos made to move</div>
+    <div style="position:absolute;bottom:clamp(14px,2vw,22px);right:clamp(16px,3vw,40px);pointer-events:none;font:500 10px/1.7 'Jost',sans-serif;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,.9);text-align:right">Written · Cast · Directed — not photos made to move</div>
   </div>
 </section>
 
@@ -141,7 +141,7 @@ image-slot{display:block}
       <sc-for list="{{ ticker }}" as="t" hint-placeholder-count="10">
         <div style="flex:0 0 auto;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:6px clamp(18px,2.6vw,38px);border-right:1px solid rgba(20,20,20,.1)">
           <span style="display:block;font:400 clamp(13px,1.2vw,16px)/1.5 'Plus Jakarta Sans',sans-serif;color:#141414;white-space:nowrap">“{{ t.quote }}”</span>
-          <a href="{{ t.href }}" target="_blank" rel="noopener" style="display:block;font:400 9px/1.7 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58;white-space:nowrap;border-bottom-color:rgba(20,20,20,.22)">{{ t.source }} · {{ t.date }}</a>
+          <a href="{{ t.href }}" target="_blank" rel="noopener" style="display:block;font:400 10px/1.7 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E5E58;white-space:nowrap;border-bottom-color:rgba(20,20,20,.22)">{{ t.source }} · {{ t.date }}</a>
         </div>
       </sc-for>
     </div>
@@ -167,8 +167,8 @@ image-slot{display:block}
         <img src="/img/before.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
     </div>
-    <div style="position:absolute;top:clamp(14px,2vw,26px);left:clamp(16px,3vw,40px);pointer-events:none;font:400 10px/1.7 'Jost',sans-serif;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,.92)">Your photograph</div>
-    <div style="position:absolute;top:clamp(14px,2vw,26px);right:clamp(16px,3vw,40px);pointer-events:none;font:400 10px/1.7 'Jost',sans-serif;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,.92)">Your film</div>
+    <div style="position:absolute;top:clamp(14px,2vw,26px);left:clamp(16px,3vw,40px);pointer-events:none;font:500 10px/1.7 'Jost',sans-serif;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,.92)">Your photograph</div>
+    <div style="position:absolute;top:clamp(14px,2vw,26px);right:clamp(16px,3vw,40px);pointer-events:none;font:500 10px/1.7 'Jost',sans-serif;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,.92)">Your film</div>
     <input type="range" min="4" max="96" value="{{ split }}" onInput="{{ setSplit }}" aria-label="Compare the photograph with the film" style="position:absolute;left:0;right:0;bottom:clamp(18px,3vw,34px);width:calc(100% - clamp(32px,6vw,80px));margin:0 clamp(16px,3vw,40px);cursor:ew-resize;accent-color:#FFFFFF">
     <div style="position:absolute;left:0;right:0;bottom:clamp(48px,6vw,74px);text-align:center;pointer-events:none;padding:0 clamp(16px,3vw,40px)">
       <span style="font:400 11px/1.7 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,.86)">Drag to compare</span>
@@ -192,7 +192,7 @@ image-slot{display:block}
         <div style="flex:{{ t.span }};height:4px;border-radius:{{ t.radius }};background:{{ t.fill }}"></div>
       </sc-for>
     </div>
-    <div style="display:flex;justify-content:space-between;margin-top:6px;font:400 9px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#7E8899">
+    <div style="display:flex;justify-content:space-between;margin-top:6px;font:500 10px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#7E8899">
       <span>Day 1</span><span>Day 10</span>
     </div>
   </div>
@@ -209,12 +209,12 @@ image-slot{display:block}
         </div>
         <div style="margin-top:10px;font:600 15px/1.22 'Plus Jakarta Sans',sans-serif;letter-spacing:-0.016em;color:#FFFFFF">{{ p.name }}</div>
         <p style="margin:7px 0 0;min-height:57px;font:400 12.5px/1.5 'Plus Jakarta Sans',sans-serif;color:#C8CEDA;max-width:26ch">{{ p.note }}</p>
-        <div style="font:500 9px/1.5 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#C4A46E">{{ p.days }}</div>
-        <div style="font:400 9px/1.5 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#7E8899">{{ p.who }}</div>
+        <div style="font:500 10px/1.5 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#C4A46E">{{ p.days }}</div>
+        <div style="font:500 10px/1.5 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#7E8899">{{ p.who }}</div>
       </div>
     </sc-for>
   </div>
-  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(16px,3vw,40px);text-align:center;font:400 10px/1.8 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#96A0B4">Scroll → · One film, seven to ten working days</div>
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(16px,3vw,40px);text-align:center;font:500 10px/1.8 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#96A0B4">Scroll → · One film, seven to ten working days</div>
 </section>
 
 <!-- SCENES: SUPPLIED → FINISHED -->
@@ -241,7 +241,7 @@ image-slot{display:block}
     <div style="flex:1 1 480px;min-width:0;position:relative;min-height:clamp(280px,58vh,660px)">
       <video src="{{ shot.video }}" poster="{{ shot.poster }}" autoPlay="true" muted="true" loop="true" playsInline="true" preload="auto" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;display:block"></video>
       <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(9,16,28,.32) 0%,rgba(9,16,28,0) 32%,rgba(9,16,28,.06) 60%,rgba(9,16,28,.62) 100%)"></div>
-      <div style="position:absolute;top:clamp(13px,1.8vw,22px);left:clamp(14px,2vw,26px);right:clamp(14px,2vw,26px);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;pointer-events:none;font:400 10px/1.7 'Jost',sans-serif;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,.92)">
+      <div style="position:absolute;top:clamp(13px,1.8vw,22px);left:clamp(14px,2vw,26px);right:clamp(14px,2vw,26px);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;pointer-events:none;font:500 10px/1.7 'Jost',sans-serif;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,.92)">
         <span>{{ shot.tag }}</span><span>{{ shot.counter }}</span>
       </div>
       <div style="position:absolute;left:clamp(14px,2vw,26px);right:clamp(14px,2vw,26px);bottom:clamp(14px,2vw,26px);pointer-events:none">
@@ -307,7 +307,7 @@ image-slot{display:block}
         <p style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(22px,2.2vw,33px);line-height:1.3;letter-spacing:-0.012em;color:#F7F8FA;text-wrap:pretty">“{{ q.text }}”</p>
         <div style="margin-top:clamp(16px,2vw,24px);display:flex;align-items:center;gap:12px">
           <span style="width:20px;height:3px;border-radius:2px;background:{{ ruleBg }};display:block;flex:0 0 auto"></span>
-          <span style="font:400 10px/1.7 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#96A0B4">{{ q.who }}</span>
+          <span style="font:500 10px/1.7 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#96A0B4">{{ q.who }}</span>
         </div>
       </div>
     </sc-for>
