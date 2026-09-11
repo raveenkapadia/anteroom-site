@@ -186,18 +186,7 @@ image-slot{display:block}
     <p style="margin:clamp(10px,1.2vw,14px) 0 0;white-space:nowrap;font:400 clamp(13px,1.55vw,17px)/1.5 'Plus Jakarta Sans',sans-serif;color:#C8CEDA">A script, a look, a grade, a language.</p>
   </div>
 
-  <div style="max-width:1560px;margin:clamp(16px,2vw,26px) auto 0;padding:0 clamp(16px,3vw,40px)">
-    <div style="display:flex;align-items:center;gap:2px">
-      <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="5">
-        <div style="flex:{{ t.span }};height:4px;border-radius:{{ t.radius }};background:{{ t.fill }}"></div>
-      </sc-for>
-    </div>
-    <div style="display:flex;justify-content:space-between;margin-top:6px;font:500 10px/1.6 'Jost',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#7E8899">
-      <span>Day 1</span><span>Day 10</span>
-    </div>
-  </div>
-
-  <div class="hs" style="margin-top:clamp(14px,1.8vw,24px);display:flex;gap:0;overflow-x:auto;padding:0 clamp(16px,3vw,40px) 14px;scroll-padding-left:clamp(16px,3vw,40px);scroll-snap-type:x proximity">
+  <div class="hs" style="margin-top:clamp(18px,2.4vw,32px);display:flex;gap:0;overflow-x:auto;padding:0 clamp(16px,3vw,40px) 14px;scroll-padding-left:clamp(16px,3vw,40px);scroll-snap-type:x proximity">
     <sc-for list="{{ process }}" as="p" hint-placeholder-count="8">
       <div style="flex:0 0 clamp(172px,17.5vw,222px);scroll-snap-align:start;padding-right:clamp(12px,1.4vw,20px)">
         <div style="height:3px;border-radius:2px;background:{{ p.ruleNavy }};box-shadow:{{ p.ruleShadowNavy }};margin-bottom:12px"></div>
@@ -387,16 +376,6 @@ class Component extends DCLogic {
     ['08','Review & delivery','Every claim checked. Four files, a list of sizes, full rights to use them.','Producer','Days 9–10']
   ];
 
-  // The bar above the cards. Five blocks, weighted by how long each phase runs,
-  // fading out as the work moves from decisions to delivery.
-  timelineData = [
-    [1, '#C4A46E', '2px 0 0 2px'],
-    [2, 'rgba(196,164,110,.72)', '0'],
-    [3, 'rgba(196,164,110,.52)', '0'],
-    [2, 'rgba(196,164,110,.36)', '0'],
-    [2, 'rgba(196,164,110,.22)', '0 2px 2px 0']
-  ];
-
   // One SVG path per stage, drawn on a 24x24 grid, stroked not filled. A single
   // path each is what lets the template interpolate the icon as an attribute.
   // Each one draws the artefact that stage produces, not a generic symbol:
@@ -573,8 +552,6 @@ class Component extends DCLogic {
 
       split: s.split, splitPct: s.split + '%', splitInverse: (10000 / s.split) + '%',
       setSplit: (e) => { const v = Number(e.target.value); this.setState(() => ({ split: v })); },
-
-      timeline: this.timelineData.map(t => ({ span: String(t[0]), fill: t[1], radius: t[2] })),
 
       process: this.processData.map((d, i) => ({
         n: d[0], name: d[1], note: d[2], who: d[3].toUpperCase(), days: d[4],
